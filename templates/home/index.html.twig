@@ -1,20 +1,163 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - Philippe Popieul, auteur et professionnel de la transformation digitale{% endblock %}
 
 {% block body %}
+<div class="bg-img-container"> 
+    <img class="bg-img" src="https://philippepopieul.fr/wp-content/uploads/2023/10/q1p7bh3shj8.jpg" />
+
+    <div class="container">
+        <div class="row">
+            <div class="text-overlay col-12 col-md-5">
+                <h1 class="bg-img-h1">Philippe Popieul</h1>
+                <p class="bg-img-p">Philippe Popieul est un auteur polyvalent, ayant déjà
+                    écrit un
+                    ouvrage technique
+                    sur la transformation digitale et se lançant maintenant dans la préparation d’un roman de science
+                    fiction
+                    sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour
+                    différents genres littéraires.</p>
+                <button
+                    class="bg-img-button">Découvrir
+                    mes ouvrages</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .bg-img-container {
+        position: relative;
+        height: 80vh;
+        width: auto;
+        overflow: hidden;
+    }
+    
+    .text-overlay{
+        position: absolute; top: 80%; left: 50%;
+         transform: translate(-50%, -50%);
+        text-align: center;
+         color: white;
+          text-shadow: 0 0 10px rgba(57, 55, 55, 0.7);
+    }
+
+    .bg-img-h1 {
+        font-weight: bold;
+         font-size: 4em;
+    }
+
+    .bg-img-p{
+        font-size: 1em;
+         text-align: justify;
+    }
+
+    .bg-img-button {
+        font-size: 1.1em;
+         background-color: #ffff;
+         border: 2px solid white;
+         color: black;
+         padding: 10px 40px; cursor: pointer;
+         font-size: 100%;
+    }
+
+
+    @media only screen and (max-width: 600px) {
+
+.img-container img {
+    width: 100%; /* Largeur de l'image de 100% du conteneur */
+    height: 100vh; /* Hauteur de l'image de 100% du conteneur */
+    object-fit: cover; /* Redimensionner l'image pour couvrir tout le conteneur */
+}
+        .text-overlay{
+            font-size: 60%;
+        }
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 1024px) {
+        .bg-img-container {
+            height: 100vh;
+        }
+        .text-overlay {
+            font-size: 80%;
+        }
+    }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/User/Desktop/my_projects/site-de-recommandation-de-livres/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/User/Desktop/my_projects/site-de-recommandation-de-livres/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+
+<div style="height: 20vh;"></div>
+<article class="container">
+    <div class="row">
+
+        <div class="col-md-6 col-sm-12 order-md-1 order-2">
+            <img src="{{ asset('img/pictures/npxxwgq33zq.jpg') }}" alt="image Biographie de philippe Popieul"
+                class="img-fluid" style="max-width: 100%; max-height: 400px;">
+        </div>
+
+        <div class="col-md-6 col-sm-12 order-md-2 order-1 mt-5">
+            <div class="card border">
+                <div class="card-header">
+                    <h3>Biographie</h3>
+                </div>
+                <div class="card-body" style="overflow-y: auto; max-height: 500px;">
+                    <h2 class="card-title">Philippe Popieul</h2>
+                    <p class="card-text">Après une carrière de 10 ans chez IBM, j'occupe aujourd'hui le poste de
+                        Directeur des Systèmes d'Informations chez Marsh McLennan.</p>
+
+                    <p class="card-text">Mes certifications académiques ainsi que que mes expériences professionnelles
+                        m'ont permis d'acquérir l'expertise nécessaire pour écrire mon ouvrage portant sur la
+                        transformation digitale et l'infoassurance.</p>
+
+                    <p class="card-text">Mon expertise me permet de décomposer les travaux complexes en tâches unitaires
+                        atteignables, démarche tendant mon action vers l'atteinte de l'excellence opérationnelle.</p>
+
+                    <p class="card-text">J'ai ainsi développé mes aptitudes au pilotage de périmètres d'envergure.</p>
+
+                    <p class="card-text">Mes compétences de gestion de crise ont été mises à contribution pour remédier
+                        à des situations critiques. Mes interventions permettront de normaliser la relation client tout
+                        en rétablissant le fonctionnement nominal et le courant commercial.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<div style="height: 20vh;"></div>
+
+
+<div style="background: #829fd9;">
+    <article class="container">
+        <div class="row">
+            <div class="col-md-6  col-12 order-2 p-5 d-flex align-items-center">
+                <img src="{{ asset('img/books-picture/couverture.jpg') }}" alt="image Biographie de philippe Popieul"
+                    class="img-fluid img-zoom ">
+
+            </div>
+            <div class="col-md-6 col-12  order-1 p-5 d-flex align-items-center" style="color: black;">
+                <div class="card-body text-center">
+                    <h2 class="card-title">Philippe Popieuel</h2>
+                    <p class="card-text">Au cours des différents chapitres, vous aurez l’occasion de découvrir les
+                        grands bouleversements causés par les géants de technologie, les transformations
+                        organisationnelles nécessaires pour s’adapter à ce nouvel environnement et l’importance cruciale
+                        de la cybersécurité dans un société aussi connectée qu’est la nôtre.
+                    </p>
+                    <p class="card-text">Explorez les débats autour du offshoring, découvrez les implications du RGPD et
+                        les pratiques américaines et plongez dans l’univers des données cruciales et sensibles. </p>
+                    <p class="card-text">Que vous soyez un professionnel chevronné ou simplement curieux, il saur vous
+                        éclairer et vous inspirer dans votre parcours technologique.</p>
+                </div>
+            </div>
+        </div>
+    </article>
 </div>
+
+<div style="height: 20vh;"></div>
+
+
+
+
+
+
 {% endblock %}
