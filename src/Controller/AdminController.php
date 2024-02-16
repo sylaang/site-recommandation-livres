@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use DateTime;
+use DateTimeImmutable;
 
 #[Route('/admin')]
 class AdminController extends AbstractController
@@ -28,12 +29,12 @@ class AdminController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $admin = new Admin();
-        $admin->setCreatedAt(new DateTime());
-
+        
         $form = $this->createForm(AdminType::class, $admin);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $admin->setCreatedAt(new DateTimeImmutable());
             $entityManager->persist($admin);
             $entityManager->flush();
 
@@ -46,9 +47,10 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_show', methods: ['GET'])]
-    public function show(Admin $admin): Response
+    #[Route('/profile', name: 'app_admin_show', methods: ['GET'])]
+    public function show(): Response
     {
+        $admin = $this->getUser();
         return $this->render('admin/show.html.twig', [
             'admin' => $admin,
         ]);
