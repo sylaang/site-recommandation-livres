@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use DateTime;
+
 #[Route('/admin')]
 class AdminController extends AbstractController
 {
@@ -26,6 +28,8 @@ class AdminController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $admin = new Admin();
+        $admin->setCreatedAt(new DateTime());
+
         $form = $this->createForm(AdminType::class, $admin);
         $form->handleRequest($request);
 
@@ -57,6 +61,7 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $admin->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->flush();
 
             return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
