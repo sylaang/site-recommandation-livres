@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CatLivre index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mt-4 mb-4">CatLivre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Genre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cat_livre in cat_livres %}
+            <tr>
+                <td>{{ cat_livre.id }}</td>
+                <td>{{ cat_livre.genre }}</td>
+                <td>
+                    <a href="{{ path('app_admin_cat_livre_show', {'id': cat_livre.id}) }}" class="btn btn-primary">Show</a>
+                    <a href="{{ path('app_admin_cat_livre_edit', {'id': cat_livre.id}) }}" class="btn btn-secondary">Edit</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_cat_livre_new') }}" class="btn btn-success">Create new</a>
+</div>
+{% endblock %}

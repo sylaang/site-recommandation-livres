@@ -21,6 +21,20 @@ class LivreRepository extends ServiceEntityRepository
         parent::__construct($registry, Livre::class);
     }
 
+        /**
+     * Retourne les livres avec leurs URL et images correspondantes.
+     *
+     * @return Livre[] Returns an array of Livre objects
+     */
+    public function findAllWithUrlsAndImages()
+    {
+        return $this->createQueryBuilder('l')
+            ->leftJoin('l.achatUrls', 'a')
+            ->addSelect('a')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Livre[] Returns an array of Livre objects
 //     */

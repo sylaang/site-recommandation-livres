@@ -100,24 +100,14 @@
                 <div class="card-header">
                     <h3>Biographie</h3>
                 </div>
+
+                {% for adminInfo in adminInfos %}                    
                 <div class="card-body" style="overflow-y: auto; max-height: 500px;">
                     <h2 class="card-title">Philippe Popieul</h2>
-                    <p class="card-text">Après une carrière de 10 ans chez IBM, j'occupe aujourd'hui le poste de
-                        Directeur des Systèmes d'Informations chez Marsh McLennan.</p>
-
-                    <p class="card-text">Mes certifications académiques ainsi que que mes expériences professionnelles
-                        m'ont permis d'acquérir l'expertise nécessaire pour écrire mon ouvrage portant sur la
-                        transformation digitale et l'infoassurance.</p>
-
-                    <p class="card-text">Mon expertise me permet de décomposer les travaux complexes en tâches unitaires
-                        atteignables, démarche tendant mon action vers l'atteinte de l'excellence opérationnelle.</p>
-
-                    <p class="card-text">J'ai ainsi développé mes aptitudes au pilotage de périmètres d'envergure.</p>
-
-                    <p class="card-text">Mes compétences de gestion de crise ont été mises à contribution pour remédier
-                        à des situations critiques. Mes interventions permettront de normaliser la relation client tout
-                        en rétablissant le fonctionnement nominal et le courant commercial.</p>
+                    <p class="card-text"> {{ adminInfo.Biographie}} </p>
                 </div>
+                {% endfor %}
+
             </div>
         </div>
     </div>
@@ -125,32 +115,67 @@
 
 <div style="height: 20vh;"></div>
 
-
 <div style="background: #829fd9;">
-    <article class="container">
-        <div class="row">
-            <div class="col-md-6  col-12 order-2 p-5 d-flex align-items-center">
-                <img src="{{ asset('img/books-picture/couverture.jpg') }}" alt="image Biographie de philippe Popieul"
-                    class="img-fluid img-zoom ">
-
-            </div>
-            <div class="col-md-6 col-12  order-1 p-5 d-flex align-items-center" style="color: black;">
-                <div class="card-body text-center">
-                    <h2 class="card-title">Philippe Popieul</h2>
-                    <p class="card-text">Au cours des différents chapitres, vous aurez l’occasion de découvrir les
-                        grands bouleversements causés par les géants de technologie, les transformations
-                        organisationnelles nécessaires pour s’adapter à ce nouvel environnement et l’importance cruciale
-                        de la cybersécurité dans un société aussi connectée qu’est la nôtre.
-                    </p>
-                    <p class="card-text">Explorez les débats autour du offshoring, découvrez les implications du RGPD et
-                        les pratiques américaines et plongez dans l’univers des données cruciales et sensibles. </p>
-                    <p class="card-text">Que vous soyez un professionnel chevronné ou simplement curieux, il saur vous
-                        éclairer et vous inspirer dans votre parcours technologique.</p>
+    <div id="livresCarousel" class="carousel slide" data-mdb-ride="carousel">
+        <div class="carousel-inner">
+            {% for livre in livres %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <article class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-12 order-md-2 d-flex align-items-center">
+                                <img src="{{ asset('img/books-picture/' ~ livre.couverture) }}" alt="Couverture du livre {{ livre.titre }}" class="img-fluid img-zoom" style="width: 20vw; height: 60vh;">
+                            </div>
+                            <div class="col-md-6 col-12 order-md-1 p-5 d-flex align-items-center" style="color: black;">
+                                <div class="card-body text-center">
+                                    <h2 class="card-title">{{ livre.titre }}</h2>
+                                    <p class="card-text">{{ livre.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    </article>
+        <button class="carousel-control-prev" type="button" data-mdb-target="#livresCarousel" data-mdb-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-mdb-target="#livresCarousel" data-mdb-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div id="partenairesCarousel" class="carousel slide mt-4" data-mdb-ride="carousel">
+        <div class="carousel-inner">
+            {% for livre in livres %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <ul>
+                        {% for achatUrl in livre.achatUrls %}
+                            <li>
+                                <a href="{{ achatUrl.url }}">
+                                    {% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
+                                    {% if domain %}
+                                        <img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=32" alt="Icône de site">
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-mdb-target="#partenairesCarousel" data-mdb-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-mdb-target="#partenairesCarousel" data-mdb-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 </div>
+
 
 <div style="height: 20vh;"></div>
 

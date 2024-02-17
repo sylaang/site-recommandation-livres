@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\CategorieLivre;
+use App\Entity\CatLivre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<CategorieLivre>
+ * @extends ServiceEntityRepository<CatLivre>
  *
- * @method CategorieLivre|null find($id, $lockMode = null, $lockVersion = null)
- * @method CategorieLivre|null findOneBy(array $criteria, array $orderBy = null)
- * @method CategorieLivre[]    findAll()
- * @method CategorieLivre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method CatLivre|null find($id, $lockMode = null, $lockVersion = null)
+ * @method CatLivre|null findOneBy(array $criteria, array $orderBy = null)
+ * @method CatLivre[]    findAll()
+ * @method CatLivre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategorieLivreRepository extends ServiceEntityRepository
+class CatLivreRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CategorieLivre::class);
+        parent::__construct($registry, CatLivre::class);
     }
 
 //    /**
-//     * @return CategorieLivre[] Returns an array of CategorieLivre objects
+//     * @return CatLivre[] Returns an array of CatLivre objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class CategorieLivreRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?CategorieLivre
+//    public function findOneBySomeField($value): ?CatLivre
 //    {
 //        return $this->createQueryBuilder('c')
 //            ->andWhere('c.exampleField = :val')

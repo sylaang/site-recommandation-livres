@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Livre{% endblock %}
+
+{% block body %}
+ {{ form_start(form) }}
+    {{ form_row(form.couverture) }}
+    {{ form_row(form.titre) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.auteur) }}
+    {{ form_row(form.genre) }}
+
+    <h3>Liens</h3>
+    <div id="achatUrls" data-prototype="{{ form_widget(form.achatUrls.vars.prototype)|e('html_attr') }}">
+        {% for achatUrlForm in form.achatUrls %}
+            <div>
+                {{ form_row(achatUrlForm.url) }}
+                <button type="button" class="btn btn-danger" onclick="removeAchatUrl(this)">Supprimer</button>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="button" class="btn btn-primary" onclick="addAchatUrl()">Ajouter un lien</button>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            {{ include('admin_livre/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
+    </div>
+    
+    {{ form_rest(form) }}
+{{ form_end(form) }}
+
+<script>
+    function addAchatUrl() {
+        var collectionHolder = $('#achatUrls');
+        var prototypes = collectionHolder.data('prototype');
+        var index = collectionHolder.children().length; // Nombre actuel de formulaires
+
+        var newForm = prototypes.replace(/__achat_urls_prototype__/g, index);
+        collectionHolder.append(newForm);
+    }
+
+    function removeAchatUrl(button) {
+        $(button).closest('div').remove();
+    }
+</script>
+
+{% endblock %}

@@ -34,17 +34,22 @@ class Livre
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'livres', targetEntity: AchatUrl::class)]
+    #[ORM\OneToMany(mappedBy: 'livres', targetEntity: AchatUrl::class, cascade: ['remove'])]
     private Collection $achatUrls;
 
-    #[ORM\ManyToMany(targetEntity: CategorieLivre::class)]
-    private Collection $Categorie;
+    #[ORM\ManyToMany(targetEntity: CatLivre::class, inversedBy: 'livres')]
+    private Collection $genre;
 
     public function __construct()
     {
         $this->auteur = new ArrayCollection();
         $this->achatUrls = new ArrayCollection();
-        $this->Categorie = new ArrayCollection();
+        $this->genre = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->titre;
     }
 
     public function getId(): ?int
@@ -167,25 +172,25 @@ class Livre
     }
 
     /**
-     * @return Collection<int, CategorieLivre>
+     * @return Collection<int, CatLivre>
      */
-    public function getCategorie(): Collection
+    public function getGenre(): Collection
     {
-        return $this->Categorie;
+        return $this->genre;
     }
 
-    public function addCategorie(CategorieLivre $categorie): static
+    public function addGenre(CatLivre $genre): static
     {
-        if (!$this->Categorie->contains($categorie)) {
-            $this->Categorie->add($categorie);
+        if (!$this->genre->contains($genre)) {
+            $this->genre->add($genre);
         }
 
         return $this;
     }
 
-    public function removeCategorie(CategorieLivre $categorie): static
+    public function removeGenre(CatLivre $genre): static
     {
-        $this->Categorie->removeElement($categorie);
+        $this->genre->removeElement($genre);
 
         return $this;
     }
