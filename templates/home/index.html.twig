@@ -3,7 +3,7 @@
 {% block title %}Accueil - Philippe Popieul, auteur et professionnel de la transformation digitale{% endblock %}
 
 {% block body %}
-<div class="bg-img-container"> 
+<div class="bg-img-container">
     <img class="bg-img" src="https://philippepopieul.fr/wp-content/uploads/2023/10/q1p7bh3shj8.jpg" />
 
     <div class="container">
@@ -17,8 +17,7 @@
                     fiction
                     sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour
                     différents genres littéraires.</p>
-                <button
-                    class="bg-img-button">Découvrir
+                <button class="bg-img-button">Découvrir
                     mes ouvrages</button>
             </div>
         </div>
@@ -33,43 +32,50 @@
         width: auto;
         overflow: hidden;
     }
-    
-    .text-overlay{
-        position: absolute; top: 80%; left: 50%;
-         transform: translate(-50%, -50%);
+
+    .text-overlay {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
-         color: white;
-          text-shadow: 0 0 10px rgba(57, 55, 55, 0.7);
+        color: white;
+        text-shadow: 0 0 10px rgba(57, 55, 55, 0.7);
     }
 
     .bg-img-h1 {
         font-weight: bold;
-         font-size: 4em;
+        font-size: 4em;
     }
 
-    .bg-img-p{
+    .bg-img-p {
         font-size: 1em;
-         text-align: justify;
+        text-align: justify;
     }
 
     .bg-img-button {
         font-size: 1.1em;
-         background-color: #ffff;
-         border: 2px solid white;
-         color: black;
-         padding: 10px 40px; cursor: pointer;
-         font-size: 100%;
+        background-color: #ffff;
+        border: 2px solid white;
+        color: black;
+        padding: 10px 40px;
+        cursor: pointer;
+        font-size: 100%;
     }
 
 
     @media only screen and (max-width: 600px) {
 
-.img-container img {
-    width: 100%; /* Largeur de l'image de 100% du conteneur */
-    height: 100vh; /* Hauteur de l'image de 100% du conteneur */
-    object-fit: cover; /* Redimensionner l'image pour couvrir tout le conteneur */
-}
-        .text-overlay{
+        .img-container img {
+            width: 100%;
+            /* Largeur de l'image de 100% du conteneur */
+            height: 100vh;
+            /* Hauteur de l'image de 100% du conteneur */
+            object-fit: cover;
+            /* Redimensionner l'image pour couvrir tout le conteneur */
+        }
+
+        .text-overlay {
             font-size: 60%;
         }
 
@@ -79,6 +85,7 @@
         .bg-img-container {
             height: 100vh;
         }
+
         .text-overlay {
             font-size: 80%;
         }
@@ -86,24 +93,26 @@
 </style>
 
 
-<div style="height: 20vh;"></div>
+ <div style="height: 20vh;"></div>
 <article class="container">
     <div class="row">
 
         <div class="col-md-6 col-sm-12 order-md-1 order-2">
             <img src="{{ asset('img/pictures/npxxwgq33zq.jpg') }}" alt="image Biographie de philippe Popieul"
                 class="img-fluid" style="max-width: 100%; max-height: 400px;">
-            </div>
+        </div>
 
         <div class="col-md-6 col-sm-12 order-md-2 order-1 mt-5">
             <div class="card border">
                 <div class="card-header">
-                    <h3>Biographie</h3>
+                    <h3 style="border-bottom: 2px solid black; display: inline-block; padding-bottom: 2px;">Biographie
+                    </h3>
+
                 </div>
 
-                {% for adminInfo in adminInfos %}                    
+                {% for adminInfo in adminInfos %}
                 <div class="card-body" style="overflow-y: auto; max-height: 500px;">
-                    <h2 class="card-title">Philippe Popieul</h2>
+                    <h2 class="card-title">{{ adminInfo.prenom }} {{ adminInfo.nom }}</h2>
                     <p class="card-text"> {{ adminInfo.Biographie}} </p>
                 </div>
                 {% endfor %}
@@ -115,25 +124,28 @@
 
 <div style="height: 20vh;"></div>
 
-<div style="background: #829fd9;">
+{# <div style="background: #30588c">
     <div id="livresCarousel" class="carousel slide" data-mdb-ride="carousel">
         <div class="carousel-inner">
             {% for livre in livres %}
-                <div class="carousel-item {% if loop.first %}active{% endif %}">
-                    <article class="container">
-                        <div class="row">
-                            <div class="col-md-6 col-12 order-md-2 d-flex align-items-center">
-                                <img src="{{ asset('img/books-picture/' ~ livre.couverture) }}" alt="Couverture du livre {{ livre.titre }}" class="img-fluid img-zoom" style="width: 20vw; height: 60vh;">
-                            </div>
-                            <div class="col-md-6 col-12 order-md-1 p-5 d-flex align-items-center" style="color: black;">
-                                <div class="card-body text-center">
-                                    <h2 class="card-title">{{ livre.titre }}</h2>
-                                    <p class="card-text">{{ livre.description }}</p>
-                                </div>
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <article class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-12 order-md-2 d-flex align-items-center">
+                            <img src="{{ asset('img/books-picture/' ~ livre.couverture) }}"
+                                alt="Couverture du livre {{ livre.titre }}" class="img-fluid img-zoom"
+                                style="width: 20vw; height: 60vh;">
+                        </div>
+
+                        <div class="col-md-6 col-12 order-md-1 p-5 d-flex align-items-center" style="color: black;">
+                            <div class="card-body text-center">
+                                <h2 class="card-title">{{ livre.titre }}</h2>
+                                <p class="card-text">{{ livre.description }}</p>
                             </div>
                         </div>
-                    </article>
-                </div>
+                    </div>
+                </article>
+            </div>
             {% endfor %}
         </div>
         <button class="carousel-control-prev" type="button" data-mdb-target="#livresCarousel" data-mdb-slide="prev">
@@ -145,39 +157,217 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+</div> #}
 
-    <div id="partenairesCarousel" class="carousel slide mt-4" data-mdb-ride="carousel">
-        <div class="carousel-inner">
-            {% for livre in livres %}
-                <div class="carousel-item {% if loop.first %}active{% endif %}">
-                    <ul>
-                        {% for achatUrl in livre.achatUrls %}
-                            <li>
-                                <a href="{{ achatUrl.url }}">
-                                    {% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
-                                    {% if domain %}
-                                        <img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=32" alt="Icône de site">
-                                    {% endif %}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endfor %}
+<div class="marquee">
+    <ul class="marquee-content">
+        {% for livre in livres %}
+        {% for achatUrl in livre.achatUrls %}
+        <li>
+            <a href="{{ achatUrl.url }}">
+                {% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
+                {% if domain %}
+                <img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=128" alt="Icône de site">
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --marquee-width: 80vw;
+        --marquee-height: 20vh;
+        /* --marquee-elements: 12; */
+        /* defined with JavaScript */
+        --marquee-elements-displayed: 5;
+        --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+        --marquee-animation-duration: calc(var(--marquee-elements) * 3s);
+    }
+
+    .marquee {
+        width: 90vw;
+        height: var(--marquee-height);
+        background-color: ;
+        color: #eee;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .marquee:before,
+    .marquee:after {
+        position: absolute;
+        top: 0;
+        width: 10rem;
+        height: 100%;
+        content: "";
+        z-index: 1;
+    }
+
+    .marquee:before {
+        left: 0;
+        /* background: linear-gradient(to right, #ffffff51 0%, transparent 100%); */
+    }
+
+    .marquee:after {
+        right: 0;
+        /* background: linear-gradient(to left, #fffefe48 0%, transparent 100%); */
+    }
+
+    .marquee-content {
+        list-style: none;
+        height: 100%;
+        display: flex;
+        animation: scrolling var(--marquee-animation-duration) linear infinite;
+    }
+
+    /* .marquee-content:hover {
+  animation-play-state: paused;
+} */
+    @keyframes scrolling {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
+        }
+    }
+
+    .marquee-content li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* text-align: center; */
+        flex-shrink: 0;
+        width: var(--marquee-element-width);
+        max-height: 100%;
+        font-size: calc(var(--marquee-height)*3/4);
+        /* 5rem; */
+        white-space: nowrap;
+    }
+
+    .marquee-content li img {
+        width: 100%;
+        /* height: 100%; */
+        border: 2px solid #eee;
+    }
+
+    @media (max-width: 600px) {
+        html {
+            font-size: 12px;
+        }
+
+        :root {
+            --marquee-width: 100vw;
+            --marquee-height: 16vh;
+            --marquee-elements-displayed: 3;
+        }
+
+        .marquee:before,
+        .marquee:after {
+            width: 5rem;
+        }
+    }
+</style>
+<script>
+    const root = document.documentElement;
+    const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+    const marqueeContent = document.querySelector("ul.marquee-content");
+
+    root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+    for (let i = 0; i < marqueeElementsDisplayed; i++) {
+        marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+    }
+</script>
+
+<style>
+    .book-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .book-info {
+        flex: 1;
+        margin-right: 20px;
+    }
+
+    .book-image {
+        width: 400px;
+        height: auto;
+        margin-left: 20px;
+    }
+</style>
+
+<div style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce; ">
+    <div style="padding: 5vh 25vw;">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-5">
+                <h4 style="font-size: 30px; border-bottom: 2px solid black; display: inline-block; padding-bottom: 2px; color: black;">
+                    Mes ouvrages</h4>
+            </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-mdb-target="#partenairesCarousel" data-mdb-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-mdb-target="#partenairesCarousel" data-mdb-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <article class="container-fluid">
+            <div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel" data-interval="2000">
+                <div class="carousel-inner">
+                    {% for key, livre in livres %}
+                        <div class="carousel-item {% if key == 0 %}active{% endif %}">
+                            <div class="container-fluid">
+                                <div class="row mb-5">
+                                    <div class="col-md-6 order-md-2">
+                                        <img src="{{ asset('img/books-picture/' ~ livre.couverture) }}" alt="Livre" class="img-fluid">
+                                    </div>
+                                    <div class="col-md-6 order-md-1">
+                                        <div class="book-info" style="color: black;">
+                                            <h2 style="font-size: 50px;">{{ livre.titre }}</h2>
+                                            <p>{{livre.description}}</p>
+        
+                                            {% for adminInfo in adminInfos %}
+                                                <small>Auteur : {{adminInfo.prenom}} {{adminInfo.nom}}</small>                            
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev custom-carousel-btn" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="prev">
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next custom-carousel-btn" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="next">
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <ol class="carousel-indicators">
+                    {% for key, livre in livres %}
+                        <li data-mdb-target="#carouselExampleControls" data-mdb-slide-to="{{ key }}" {% if key == 0 %}class="active"{% endif %}></li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </article>
     </div>
 </div>
 
+<style>
+    .custom-carousel-btn {
+    color: black;
+}
+</style>
 
-<div style="height: 20vh;"></div>
+
+
+<div style="height: 50vh;"></div>
 
 
 

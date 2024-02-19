@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li id="accueil-link" class="nav-item font-a-nav">
-                        <a class="nav-link" href="#">Accueil</a>
+                        <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
                     </li>
                     <li class="nav-item font-a-nav">
                         <a class="nav-link" href="#">À propos</a>
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li class="nav-item font-a-nav">
-                        <a class="nav-link" href="#">Ouvrage</a>
+                        <a class="nav-link" href="{{ path('app_livre_index') }}">Ouvrages</a>
                     </li>
 
                     <li class="nav-item font-a-nav">
@@ -70,10 +70,9 @@
             </div>
         </div>
     </nav>
-    <div style="height: 20vh;"></div>
     {% block body %}{% endblock %}
 
-    <footer class="text-white py-5" style="background: #30588c;">
+    <footer class="text-white py-5" style="background: #30588c; box-shadow: 0 -5px 15px 1px #000000;">    
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">

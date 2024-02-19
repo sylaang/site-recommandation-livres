@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block body %}
+<div style="height: 20vh;"></div>
+
+<div class="container*fluid">
+    <div class="container">
+        <h1 class="text-center mb-4 font-weight-bold display-1 text-black py-5" style="border-bottom: 2px solid black; padding-bottom: 2px;">Ouvrages</h1>
+        <hr>
+        {% for livre in livres %}
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-4">
+                <img src="{{ asset('img/books-picture/') ~ livre.couverture }}" class="rounded img-fluid"
+                    alt="Couverture du livre">
+            </div>
+            <div class="col-md-12 text-center">
+                <h2 class="font-weight-bold display-4 text-black ">{{ livre.titre }}</h2>
+                <br>
+                <p class="text-md-left text-sm-center lead text-black">{{ livre.description }}</p>
+                <div class="text-center">
+                    <button type="button" class="btn btn-light btn-outline-dark btn-animate"
+                        onclick="window.location='{{ path('app_livre_show', {'id': livre.id}) }}'">Voir plus</button>
+                </div>
+                <style>
+                    .btn-animate {
+                        transition: transform 0.3s ease;
+                    }
+                
+                    .btn-animate:hover {
+                        transform: scale(1.1);
+                    }
+                </style>
+                <br>
+                {% for adminInfo in adminInfos %}
+                <small> <strong class="text-black">{{adminInfo.prenom}} {{adminInfo.nom}}</strong> </small>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        <div style="height: 10vh;"></div>
+        {% else %}
+        <p class="text-center">Aucun livre trouvé.</p>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
