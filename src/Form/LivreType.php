@@ -32,7 +32,9 @@ class LivreType extends AbstractType
             ],
         ])
             ->add('titre')
+            ->add('shortDescription')
             ->add('description')
+            ->add('nbrPage')
             ->add('auteur')
             ->add('genre')
             ->add('achatUrls', CollectionType::class, [

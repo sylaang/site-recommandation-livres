@@ -40,6 +40,12 @@ class Livre
     #[ORM\ManyToMany(targetEntity: CatLivre::class, inversedBy: 'livres')]
     private Collection $genre;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $shortDescription = null;
+
+    #[ORM\Column]
+    private ?int $nbrPage = null;
+
     public function __construct()
     {
         $this->auteur = new ArrayCollection();
@@ -191,6 +197,30 @@ class Livre
     public function removeGenre(CatLivre $genre): static
     {
         $this->genre->removeElement($genre);
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(string $shortDescription): static
+    {
+        $this->shortDescription = $shortDescription;
+
+        return $this;
+    }
+
+    public function getNbrPage(): ?int
+    {
+        return $this->nbrPage;
+    }
+
+    public function setNbrPage(int $nbrPage): static
+    {
+        $this->nbrPage = $nbrPage;
 
         return $this;
     }
