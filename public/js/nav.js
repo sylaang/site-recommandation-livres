@@ -1,9 +1,10 @@
-const navEl = document.querySelector('.navbar');
+window.onscroll = function() {scrollFunction()};
 
-window.addEventListener('scroll', () => {
-if (window.scrollY >= 56) {
-    navEl.classList.add('navbar-scrolled');
-}else if (window.scrollY < 56) {
-    navEl.classList.remove('navbar-scrolled');
+function scrollFunction() {
+    var navbar = document.querySelector('.navbar');
+    if (window.pageYOffset > 0) {
+        navbar.classList.add('fixed-navbar');
+    } else {
+        navbar.classList.remove('fixed-navbar');
+    }
 }
-});

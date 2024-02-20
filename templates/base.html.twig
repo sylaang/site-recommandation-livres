@@ -34,46 +34,26 @@
 </head>
 
 <body>
+
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
 
-    </script>
-    <div style="height: 20vh;"></div>
-    <nav id="main-navbar" class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff;">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li id="accueil-link" class="nav-item font-a-nav">
-                        <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item font-a-nav">
-                        <a class="nav-link" href="#">À propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ path('app_home') }}" class="ajax">
-                            <img width="140" height="100" src="{{ asset('img/logo/logo-entreprise.svg') }}"
-                                alt="footer logo" data-lazy-src="{{ asset('img/logo/Logo.svg') }}"
-                                data-ll-status="loaded" class="entered lazyloaded">
-                        </a>
-                    </li>
-                    <li class="nav-item font-a-nav">
-                        <a class="nav-link" href="{{ path('app_livre_index') }}">Ouvrages</a>
-                    </li>
+    
 
-                    <li class="nav-item font-a-nav">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar">
+  <ul>
+    <li><a href="{{ path('app_home') }}">Accueil</a></li>
+    <li><a href="#">À propos</a></li>
+    <li class="logo"><a href="{{ path('app_home') }}"><img src="{{ asset('img/logo/logo-entreprise.svg') }}" alt="Mon Logo"></a></li>
+    <li><a href="{{ path('app_livre_index') }}">Ouvrage</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+
     {% block body %}{% endblock %}
 
-    <footer class="text-white py-5" style="background: #30588c; box-shadow: 0 -5px 15px 1px #000000;">    
+    <footer class="text-white py-5" style="background: #30588c;">    
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
@@ -108,22 +88,10 @@
 
     <!-- ____________________________________MDB_______________________________-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <!-- ____________________________________NAV_______________________________-->
     <script src="{{ asset('js/nav.js') }}"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Ajoutez la classe 'active' au lien 'Accueil' au chargement de la page
-            $('#accueil-link').addClass('active');
-
-            // Ajoutez la classe 'active' au lien cliqué et retirez-la des autres liens
-            $('.nav-item').click(function () {
-                $('.nav-item').removeClass('active');
-                $(this).addClass('active');
-            });
-        });
-    </script>
 
 
 {% block javascripts %}

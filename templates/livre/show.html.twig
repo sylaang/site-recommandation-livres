@@ -1,46 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Livre{% endblock %}
-
+{% block stylesheets %}
+<link href="{{ asset('css/marquee.css') }}" rel="stylesheet">
+{% endblock %}
 {% block body %}
-    <h1>Livre</h1>
+<div style="height: 20vh;"></div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ livre.id }}</td>
-            </tr>
-            <tr>
-                <th>Couverture</th>
-                <td>{{ livre.couverture }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ livre.titre }}</td>
-            </tr>
-            <tr>
-                <th>Description courte</th>
-                <td>{{ livre.shortDescription }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ livre.description }}</td>
-            </tr>
-            <tr>
-                <th>Nombre de page</th>
-                <td>{{ livre.nbrPage }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ livre.createdAt ? livre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{ asset('img/books-picture/') ~ livre.couverture }}" alt="Couverture du Livre" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <h1 class="mb-3">{{ livre.titre }}</h1>
+                {% set descriptionParagraphs = livre.description|split('.') %}
+                {% for paragraph in descriptionParagraphs %}
+                <p class="lead">{{ livre.description }}</p>
+                {% endfor %}
+                <ul class="list-unstyled">
+                    <li><strong>Nombre de Pages:</strong> {{ livre.nbrPage }}</li>
+                                    {% for adminInfo in adminInfos %}
+                    <li><strong>Auteur:</strong> {{adminInfo.prenom}} {{adminInfo.nom}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <a href="{{ path('app_livre_index') }}">back to list</a>
+
+
+
+
+
+<div class="marquee">
+<h4 style="color: black;">acheter</h4>
+    <ul class="marquee-content">
+        {% for achatUrl in livre.achatUrls %}
+        <li>
+            <a href="{{ achatUrl.url }}">
+                {% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
+                {% if domain %}
+                <img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=128" alt="Icône de site">
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+	<script>
+		const root = document.documentElement;
+const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+const marqueeContent = document.querySelector("ul.marquee-content");
+
+root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+for (let i = 0; i < marqueeElementsDisplayed; i++) {
+marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+}
+	</script>
 {% endblock %}

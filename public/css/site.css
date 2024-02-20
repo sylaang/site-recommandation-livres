@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Lato', sans-serif;
     text-decoration: none;
     margin: 0;
@@ -9,35 +9,254 @@ body {
     background-color: #f2f2f2;
 }
 
-.font-a-nav {
-    margin-top: 1.5rem;
-    font-size: 1.1rem;
 
+
+
+
+.background-image {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.overlay {
+    bottom: 0;
+    padding: 20px;
+    width: 50vw;
+    font-size: 100%;
+    margin-top: 60vh;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #dddddd;
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+}
+
+.background-image {
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Calcul de la hauteur restante après déduction de la hauteur de la navbar */
+    z-index: 0;
 }
 
 .navbar {
-    transition: all 0.5s;
+    background-color: #ffffff;
+    justify-content: center;
+    /* Centrer horizontalement */
+    align-items: center;
+    /* Centrer verticalement */
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+
 }
 
-.nav-item.active .nav-link,
-.navbar-nav .nav-item:hover .nav-link {
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    /* Ajoute d'autres styles selon tes besoins */
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    /* Centrer verticalement les éléments de la liste */
+    height: 12vh;
+    /* Hauteur de la navbar */
+}
+
+.navbar ul li {
+    margin: 0 20px;
+}
+
+.navbar ul li a {
+    color: #000;
+    /* Couleur du texte des liens */
+    font-size: 1.3rem;
+    /* Ajuster la taille de la police des liens */
     position: relative;
+    /* Position relative pour permettre le positionnement de l'élément ::before */
 }
 
-.nav-item.active .nav-link::after,
-.navbar-nav .nav-item:hover .nav-link::after {
+.navbar ul li.logo {
+    margin-right: auto;
+}
+
+.navbar ul li a img {
+    height: 150px;
+}
+
+.navbar ul li a::before {
     content: "";
     position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
     left: 0;
-    bottom: -2px; /* Ajustez la valeur pour contrôler l'épaisseur de la ligne */
-    width: 100%;
-    height: 1px; /* Ajustez la valeur pour contrôler l'épaisseur de la ligne */
-    background-color: #000; /* Couleur de la ligne */
-    transition: bottom 0.3s ease; /* Ajoutez une transition à la propriété bottom */
+    background-color: #000000;
+    transition: width 0.3s ease;
+    /* Transition pour l'effet de sous-ligne */
 }
 
-.bg-img{
-    height: 100%; 
+.navbar ul li a:hover::before {
+    width: 100%;
+}
+
+.navbar ul li a:hover {
+    text-decoration: none;
+    /* Désactiver la soulignement par défaut lors du survol */
+}
+
+
+@media screen and (max-width: 1024px) {
+    .navbar ul li a {
+        font-size: 100%;
+        /* Ajuster la taille de la police des liens */
+    }
+
+    .navbar ul li a img {
+        height: 120px;
+        /* Réduire la taille du logo */
+    }
+    .overlay {
+        font-size: 80%;
+        width: 80vw;
+        margin-top: 40vh;
+    }
+}
+/* Styles pour les écrans de petite taille (mobile) */
+@media screen and (max-width: 767px) {
+    .navbar ul li a {
+        font-size: 100%;
+        /* Ajuster la taille de la police des liens */
+    }
+
+    .navbar ul li a img {
+        height: 120px;
+        /* Réduire la taille du logo */
+    }
+    .overlay {
+        font-size: 80%;
+        width: 80vw;
+        margin-top: 50vh;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    /* Styles CSS pour les smartphones en orientation portrait */
+    .navbar ul li a {
+        font-size: 100%;
+        /* Ajuster la taille de la police des liens */
+    }
+
+    .navbar ul li a img {
+        height: 120px;
+        /* Réduire la taille du logo */
+    }
+    .overlay {
+        font-size: 100%;
+        width: 80vw;
+
+    }
+}
+@media screen and (max-width: 414px) {
+    /* Styles CSS pour les smartphones en orientation portrait */
+    .navbar ul li a {
+        font-size: 65%;
+        /* Ajuster la taille de la police des liens */
+    }
+
+    .navbar ul li a img {
+        height: 80px;
+        /* Réduire la taille du logo */
+    }
+    .overlay {
+        width: 90vw;
+        font-size: 65%;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    /* Styles CSS pour les petits smartphones */
+    .navbar ul li a {
+        font-size: 62%;
+        /* Ajuster la taille de la police des liens */
+    }
+
+    .navbar ul li a img {
+        height: 50px;
+        /* Réduire la taille du logo */
+    }
+    .overlay {
+        width: 100vw;
+        font-size: 50%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bg-img {
+    height: 100%;
     width: 100%;
 }
 
@@ -93,11 +312,11 @@ a.text-white:hover::before {
     width: 100%;
 }
 
-.img-zoom{
+.img-zoom {
     transition: 1s;
 }
 
-.img-zoom:hover{
+.img-zoom:hover {
     -ms-transform: scale(1.1);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);

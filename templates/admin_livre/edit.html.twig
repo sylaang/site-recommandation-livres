@@ -3,10 +3,12 @@
 {% block title %}Edit Livre{% endblock %}
 
 {% block body %}
- {{ form_start(form) }}
+    {{ form_start(form) }}
     {{ form_row(form.couverture) }}
     {{ form_row(form.titre) }}
+    {{ form_row(form.shortDescription) }}
     {{ form_row(form.description) }}
+    {{ form_row(form.nbrPage) }}
     {{ form_row(form.auteur) }}
     {{ form_row(form.genre) }}
 
