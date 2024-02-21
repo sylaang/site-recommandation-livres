@@ -7,35 +7,52 @@
 {% block body %}
 <div style="height: 20vh;"></div>
 
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="{{ asset('img/books-picture/') ~ livre.couverture }}" alt="Couverture du Livre" class="img-fluid">
-            </div>
-            <div class="col-md-8">
-                <h1 class="mb-3">{{ livre.titre }}</h1>
-                {% set descriptionParagraphs = livre.description|split('.') %}
-                {% for paragraph in descriptionParagraphs %}
-                <p class="lead">{{ livre.description }}</p>
+<article>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Insérer votre image directement ici -->
+            <img src="{{ asset('img/books-picture/') ~ livre.couverture }}" alt="Couverture du Livre" class="img-fluid" id="parallaxImage">
+        </div>
+        <div class="col-md-8">
+            <h1 class="mb-3">{{ livre.titre }}</h1>
+            <div class="" id="parallaxText">
+                {% set descriptionSentences = livre.description|split('.') %}
+                {% for sentence in descriptionSentences %}
+                    <p class="lead">{{ sentence ~ '.' }}</p>
                 {% endfor %}
-                <ul class="list-unstyled">
-                    <li><strong>Nombre de Pages:</strong> {{ livre.nbrPage }}</li>
-                                    {% for adminInfo in adminInfos %}
-                    <li><strong>Auteur:</strong> {{adminInfo.prenom}} {{adminInfo.nom}}</li>
-                {% endfor %}
-                </ul>
             </div>
+            <ul class="list-unstyled">
+                <li><strong>Nombre de Pages:</strong> {{ livre.nbrPage }}</li>
+                {% for adminInfo in adminInfos %}
+                    <li><strong>Auteur:</strong> {{ adminInfo.prenom }} {{ adminInfo.nom }}</li>
+                {% endfor %}
+            </ul>
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.location='{{ path('app_livre_index') }}'">Voir mes Ouvrages</button>
+            </div>
+            <style>
+                .btn-animate {
+                    transition: transform 0.3s ease;
+                }
+            
+                .btn-animate:hover {
+                    transform: scale(1.1);
+                }
+            </style>
+
+
         </div>
     </div>
-
-    <a href="{{ path('app_livre_index') }}">back to list</a>
-
+</div>
 
 
 
 
 <div class="marquee">
-<h4 style="color: black;">acheter</h4>
+    <h4 style="color: black; margin-left: 5vw; text-decoration: underline;">Cliquez sur l'une des plateformes ci-dessous pour acheter le livre :</h4>
+
+
     <ul class="marquee-content">
         {% for achatUrl in livre.achatUrls %}
         <li>
@@ -50,17 +67,12 @@
     </ul>
 </div>
 
+</article>
 
 
-	<script>
-		const root = document.documentElement;
-const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
-const marqueeContent = document.querySelector("ul.marquee-content");
+{% endblock %}
 
-root.style.setProperty("--marquee-elements", marqueeContent.children.length);
-
-for (let i = 0; i < marqueeElementsDisplayed; i++) {
-marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
-}
-	</script>
+{% block javascripts %}
+<script src="{{ asset('js/marquee.js')}}"></script>
+<script src="{{ asset('js/livre_show.js')}}"></script>
 {% endblock %}

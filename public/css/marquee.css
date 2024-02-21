@@ -34,12 +34,10 @@
 
 .marquee:before {
     left: 0;
-    /* background: linear-gradient(to right, #ffffff51 0%, transparent 100%); */
 }
 
 .marquee:after {
     right: 0;
-    /* background: linear-gradient(to left, #fffefe48 0%, transparent 100%); */
 }
 
 .marquee-content {
