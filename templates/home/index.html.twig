@@ -10,13 +10,15 @@
 
 {% block body %}
 
-<div class="background-image" style="background: url('https://philippepopieul.fr/wp-content/uploads/2023/10/q1p7bh3shj8.jpg') no-repeat center; background-size: cover;">
+{% for adminInfo in adminInfos %}
+<div class="background-image" style="background: url('{{ asset('img/firstImageHome/') ~ adminInfo.firstimageHome }}') no-repeat center; background-size: cover;">
     <div class="overlay">
         <h1>Philippe Popieul</h1>
-        <p>Philippe Popieul est un auteur polyvalent, ayant déjà écrit un ouvrage technique sur la transformation digitale et se lançant maintenant dans la préparation d’un roman de science fiction sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour différents genres littéraires.</p>
+        <p>Est un auteur polyvalent, ayant déjà écrit un ouvrage technique sur la transformation digitale et se lançant maintenant dans la préparation d’un roman de science fiction sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour différents genres littéraires.</p>
         <a href="{{path('app_livre_index')}}" class="btn">Découvrir mes ouvrages</a>
     </div>
 </div>
+{% endfor %}
 
 
 
@@ -25,7 +27,9 @@
 		<div class="row">
 
 			<div class="col-md-6 col-sm-12 order-md-1 order-2">
-				<img src="{{ asset('img/pictures/npxxwgq33zq.jpg') }}" alt="image Biographie de philippe Popieul" class="img-fluid" style="max-width: 100%; max-height: 400px;">
+            {% for adminInfo in adminInfos %}
+				<img src="{{ asset('img/ImgShortBiographie/') ~ adminInfo.imgShortBiographie }}" alt="image Biographie de philippe Popieul" class="img-fluid" style="max-width: 100%; max-height: 400px;">
+                {% endfor %}
 			</div>
 
 			<div class="col-md-6 col-sm-12 order-md-2 order-1 mt-5">
@@ -41,7 +45,7 @@
 							<h2 class="card-title">{{ adminInfo.prenom }}
 								{{ adminInfo.nom }}</h2>
 							<p class="card-text">
-								{{ adminInfo.Biographie}}
+								{{ adminInfo.shortBiographie}}
 							</p>
 						</div>
 					{% endfor %}

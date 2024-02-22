@@ -1,50 +1,39 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-    <h1>Admin</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ admin.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ admin.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ admin.roles ? admin.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ admin.password }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ admin.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ admin.prenom }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ admin.createdAt ? admin.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ admin.updatedAt ? admin.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_admin_index') }}">back to list</a>
-
-    <a href="{{ path('app_admin_edit', {'id': admin.id}) }}">edit</a>
+<div class="container">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="pt-5">Profil de :</h1>
+                        <hr>
+                        <div class="admin-details">
+                            <p><strong>Email:</strong> {{ admin.email }}</p>
+                            <p><strong>Password:</strong> {{ admin.password }}</p>
+                            <p><strong>Nom:</strong> {{ admin.nom }}</p>
+                            <p><strong>Prénom:</strong> {{ admin.prenom }}</p>
+                            <p><strong>Première image de page d'accueil :</strong> <img src="{{ asset('img/firstImageHome/') ~ admin.firstImageHome }}" class="img-fluid" alt="Image de la première page d'accueil" style="max-width: 150px;"></p>
+                            <p><strong>Courte biographie:</strong> {{ admin.shortBiographie }}</p>
+                            <p><strong>Image de ma biographie :</strong> <img src="{{ asset('img/aPropos/') ~ admin.imageBiographie }}" class="img-fluid" alt="Image Biographie" style="max-width: 150px;"></p>
+                            <p><strong>Biographie:</strong> {{ admin.biographie }}</p>
+                            <p><strong>Deuxième image pour ma biographie :</strong> <img src="{{ asset('img/second-aPropos/') ~ admin.secondImageBiographie }}" class="img-fluid" alt="Second Image Biographie" style="max-width: 150px;"></p>
+                            <p><strong>Image de présentation de mes réseaux sociaux :</strong> <img src="{{ asset('img/third-aPropos/') ~ admin.imageReseauxSociaux }}" class="img-fluid" alt="Image Réseaux" style="max-width: 150px;"></p>
+                            <p><strong>Crée le :</strong> {{ admin.createdAt ? admin.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                            <p><strong>Mis a jour le :</strong> {{ admin.updatedAt ? admin.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
+                        </div>
+                        <a href="{{ path('app_admin_index') }}">Back to list</a>
+                        <a href="{{ path('app_admin_edit', {'id': admin.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <hr>
+</div>
 
     {{ include('admin/_delete_form.html.twig') }}
 {% endblock %}

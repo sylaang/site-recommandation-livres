@@ -2,22 +2,23 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Admin;
+use DateTimeImmutable;
 use App\Form\AdminType;
+use App\Services\FileUploader;
 use App\Repository\AdminRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-use DateTime;
-use DateTimeImmutable;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin')]
 class AdminController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_index', methods: ['GET'])]
+    #[Route('/auteurs', name: 'app_admin_index', methods: ['GET'])]
     public function index(AdminRepository $adminRepository): Response
     {
         return $this->render('admin/index.html.twig', [
@@ -26,7 +27,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $admin = new Admin();
         
@@ -34,7 +35,18 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imagename = $form->get('imageBiographie')->getData();
+
+            if ($imagename) {
+
+                $imageBiographie_nom = $fileUploader->uploadBiographie($imagename, $admin);               
+                
+                $admin->setImageBiographie($imageBiographie_nom);
+            }
+
             $admin->setCreatedAt(new DateTimeImmutable());
+            $admin->setUpdatedAt(new DateTimeImmutable());
             $entityManager->persist($admin);
             $entityManager->flush();
 
@@ -47,7 +59,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/profile', name: 'app_admin_show', methods: ['GET'])]
+    #[Route('/profil', name: 'app_admin_show', methods: ['GET'])]
     public function show(): Response
     {
         $admin = $this->getUser();
@@ -57,12 +69,50 @@ class AdminController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Admin $admin, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Admin $admin, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(AdminType::class, $admin);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imagename = $form->get('imageBiographie')->getData();
+            $imagename2 = $form->get('secondImageBiographie')->getData();
+            $imagename3 = $form->get('imageReseauxSociaux')->getData();
+            $imagename4 = $form->get('firstImageHome')->getData();
+            $imagename5 = $form->get('ImgShortBiographie')->getData();
+
+            if ($imagename) {
+
+                $imageBiographie_nom = $fileUploader->uploadBiographie($imagename, $admin);                
+                
+                $admin->setimageBiographie($imageBiographie_nom);
+            }
+            if ($imagename2) {
+
+                $secondImageBiographie_nom = $fileUploader->uploadSecondBiographie($imagename2, $admin);                
+                
+                $admin->setSecondImageBiographie($secondImageBiographie_nom);
+            }
+            if ($imagename3) {
+
+                $imageReseauxSociaux_nom = $fileUploader->uploadThirdBiographie($imagename3, $admin);                
+                
+                $admin->setImageReseauxSociaux($imageReseauxSociaux_nom);
+            }
+            if ($imagename4) {
+
+                $firstImageHome_nom = $fileUploader->uploadFirstImageHome($imagename4, $admin);                
+                
+                $admin->setFirstImageHome($firstImageHome_nom);
+            }
+            if ($imagename5) {
+
+                $ImgShortBiographie_nom = $fileUploader->uploadImgShortBiographie($imagename5, $admin);                
+                
+                $admin->setImgShortBiographie($ImgShortBiographie_nom);
+            }
+
             $admin->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->flush();
 

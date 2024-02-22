@@ -142,10 +142,9 @@ h1 {
     /* Désactiver la soulignement par défaut lors du survol */
 }
 
-
 @media screen and (max-width: 1024px) {
     .navbar ul li a {
-        font-size: 100%;
+        font-size: 90%;
         /* Ajuster la taille de la police des liens */
     }
 
@@ -154,7 +153,7 @@ h1 {
         /* Réduire la taille du logo */
     }
     .overlay {
-        font-size: 80%;
+        font-size: 70%;
         width: 80vw;
         margin-top: 40vh;
     }
@@ -162,7 +161,7 @@ h1 {
 /* Styles pour les écrans de petite taille (mobile) */
 @media screen and (max-width: 767px) {
     .navbar ul li a {
-        font-size: 100%;
+        font-size: 90%;
         /* Ajuster la taille de la police des liens */
     }
 
@@ -171,7 +170,7 @@ h1 {
         /* Réduire la taille du logo */
     }
     .overlay {
-        font-size: 80%;
+        font-size: 70%;
         width: 80vw;
         margin-top: 50vh;
     }
@@ -180,41 +179,7 @@ h1 {
 @media screen and (max-width: 560px) {
     /* Styles CSS pour les smartphones en orientation portrait */
     .navbar ul li a {
-        font-size: 100%;
-        /* Ajuster la taille de la police des liens */
-    }
-
-    .navbar ul li a img {
-        height: 120px;
-        /* Réduire la taille du logo */
-    }
-    .overlay {
-        font-size: 100%;
-        width: 80vw;
-
-    }
-}
-@media screen and (max-width: 414px) {
-    /* Styles CSS pour les smartphones en orientation portrait */
-    .navbar ul li a {
-        font-size: 65%;
-        /* Ajuster la taille de la police des liens */
-    }
-
-    .navbar ul li a img {
-        height: 80px;
-        /* Réduire la taille du logo */
-    }
-    .overlay {
-        width: 90vw;
-        font-size: 65%;
-    }
-}
-
-@media screen and (max-width: 376px) {
-    /* Styles CSS pour les petits smartphones */
-    .navbar ul li a {
-        font-size: 62%;
+        font-size: 60%;
         /* Ajuster la taille de la police des liens */
     }
 
@@ -223,10 +188,47 @@ h1 {
         /* Réduire la taille du logo */
     }
     .overlay {
+        font-size: 90%;
+        width: 80vw;
+
+    }
+}
+@media screen and (max-width: 414px) {
+    /* Styles CSS pour les smartphones en orientation portrait */
+    .navbar ul li a {
+        font-size: 50%;
+        /* Ajuster la taille de la police des liens */
+    }
+
+    .navbar ul li a img {
+        height: 60px;
+        /* Réduire la taille du logo */
+    }
+    .overlay {
+        width: 90vw;
+        font-size: 55%;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    /* Styles CSS pour les petits smartphones */
+    .navbar ul li a {
+        font-size: 45%;
+        /* Ajuster la taille de la police des liens */
+    }
+
+    .navbar ul li a img {
+        height: 35px;
+        /* Réduire la taille du logo */
+    }
+    .overlay {
         width: 100vw;
         font-size: 50%;
     }
 }
+
+
+
 
 
 
@@ -321,3 +323,5 @@ a.text-white:hover::before {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }
+
+

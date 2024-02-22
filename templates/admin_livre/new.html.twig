@@ -1,29 +1,55 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_row(form.couverture) }}
-    {{ form_row(form.titre) }}
-    {{ form_row(form.shortDescription) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.nbrPage) }}
-    {{ form_row(form.auteur) }}
-    {{ form_row(form.genre) }}
+<div class="container">
 
-    <h3>Liens</h3>
-    <div id="achatUrls" data-prototype="{{ form_widget(form.achatUrls.vars.prototype)|e('html_attr') }}">
-        {% for achatUrlForm in form.achatUrls %}
-            <div>
-                {{ form_row(achatUrlForm.url) }}
-                <button type="button" class="btn btn-danger" onclick="removeAchatUrl(this)">Supprimer</button>
-            </div>
-        {% endfor %}
+        <h1 class="pt-5">Création de votre livre</h1>
+        {{ form_start(form, {'attr': {'class': 'form-custom-class'}}) }}
+        
+        <div class="form-group">
+            {{ form_row(form.couverture, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="form-group">
+            {{ form_row(form.titre, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="form-group">
+            {{ form_row(form.shortDescription, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="form-group">
+            {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="form-group">
+            {{ form_row(form.nbrPage, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="form-group">
+            {{ form_row(form.auteur, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <div class="form-group">
+            {{ form_row(form.genre, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <h3>Liens</h3>
+        <div id="achatUrls" data-prototype="{{ form_widget(form.achatUrls.vars.prototype)|e('html_attr') }}" class="mb-3">
+            {% for achatUrlForm in form.achatUrls %}
+                <div class="achat-url-item mb-2">
+                    {{ form_row(achatUrlForm.url, {'attr': {'class': 'form-control mb-2'}}) }}
+                    <button type="button" class="btn btn-danger" onclick="removeAchatUrl(this)">Supprimer</button>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" class="btn btn-primary mb-3" onclick="addAchatUrl()">Ajouter un lien</button>
+        
+        <button type="submit" class="btn btn-success">Envoyer</button>
+        
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
     </div>
-    <button type="button" class="btn btn-primary" onclick="addAchatUrl()">Ajouter un lien</button>
-    <button type="submit" class="btn btn-success">Envoyer</button>
-    
-    {{ form_rest(form) }}
-{{ form_end(form) }}
 
 <script>
     var index = $('#achatUrls').children().length;

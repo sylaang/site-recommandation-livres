@@ -25,3 +25,8 @@ services:
     App\Services\FileUploader:
         arguments:
             $targetDirectoryLivre: '%kernel.project_dir%/public/img/books-picture'
+            $targetDirectoryApropos: '%kernel.project_dir%/public/img/apropos'
+            $targetDirectorySecondApropos: '%kernel.project_dir%/public/img/second-apropos'
+            $targetDirectoryThirdApropos: '%kernel.project_dir%/public/img/third-apropos'
+            $targetDirectoryFirstImageHome: '%kernel.project_dir%/public/img/firstImageHome'
+            $targetDirectoryImgShortBiographie: '%kernel.project_dir%/public/img/ImgShortBiographie'

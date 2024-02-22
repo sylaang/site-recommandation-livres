@@ -1,13 +1,91 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Edit Admin{% endblock %}
 
 {% block body %}
-    <h1>Edit Admin</h1>
+<div class="container">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Votre contenu de la page ici -->
+                    <div class="col-md-12">
+                        <h1>Formulaire d'administrateur</h1>
+                        <br>
+                        <!-- Insérez votre formulaire ici -->
+                        <div class="admin-form">
+                            {{ form_start(form) }}
+                            <h4 class="mt-5 mb-3">Mon profil</h4>
+                                {{ form_row(form.email) }}
+                                {{ form_row(form.password) }}
+                                {{ form_row(form.nom) }}
+                                {{ form_row(form.prenom) }}
 
-    {{ include('admin/_form.html.twig', {'button_label': 'Update'}) }}
+                                <h4 class="mt-5 mb-3">Page d'accueil</h4>
+                                <p><strong>Première image de page d'accueil :</strong></p>
+                                {{ form_widget(form.firstImageHome, {'attr': {'onchange': 'showImagePreview(this, "selected-image-preview-1")'}}) }}
+                                <img id="selected-image-preview-1" src="#" alt="Aperçu de l'image sélectionnée" style="max-width: 200px; max-height: 200px; display: none;">
+                                <p class="mt-4"><strong>Image pour la courte biographie :</strong></p>
+                                {{ form_widget(form.ImgShortBiographie, {'attr': {'onchange': 'showImagePreview(this, "selected-image-preview-1")'}}) }}
+                                <img id="selected-image-preview-1" src="#" alt="Aperçu de l'image sélectionnée" style="max-width: 200px; max-height: 200px; display: none;">
+                                <p class="mt-4"><strong>Courte biographie :</strong></p>
+                                {{ form_widget(form.shortBiographie, {'attr': {'rows': '10'}}) }}
 
-    <a href="{{ path('app_admin_index') }}">back to list</a>
+                                <h4 class="mt-5 mb-3">Page À propos</h4>
+                                <p><strong>Image de ma biographie :</strong></p>
+                                {{ form_widget(form.imageBiographie, {'attr': {'onchange': 'showImagePreview(this, "selected-image-preview-2")'}}) }}
+                                <img id="selected-image-preview-2" src="#" alt="Aperçu de l'image sélectionnée" style="max-width: 200px; max-height: 200px; display: none;">
 
-    {{ include('admin/_delete_form.html.twig') }}
+                                <p class="mt-4"><strong>Biographie :</strong></p>
+                                {{ form_widget(form.biographie, {'attr': {'rows': '10'}}) }}
+
+                                <p class="mt-4"><strong>Deuxième image pour ma biographie :</strong></p>
+                                {{ form_widget(form.secondImageBiographie, {'attr': {'onchange': 'showImagePreview(this, "selected-image-preview-3")'}}) }}
+                                <img id="selected-image-preview-3" src="#" alt="Aperçu de l'image sélectionnée" style="max-width: 200px; max-height: 200px; display: none;">
+
+                                <p class="mt-4"><strong>Image de présentation de mes réseaux sociaux :</strong></p>
+                                {{ form_widget(form.imageReseauxSociaux, {'attr': {'onchange': 'showImagePreview(this, "selected-image-preview-4")'}}) }}
+                                <img id="selected-image-preview-4" src="#" alt="Aperçu de l'image sélectionnée" style="max-width: 200px; max-height: 200px; display: none;">
+
+                                <div class="row my-4">
+                                    <div class="col-md-6">
+                                        {{ form_rest(form) }}
+                                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                                    </div>
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
 {% endblock %}
+
+{% block javascripts %}
+<script>
+    function showImagePreview(input, imagePreviewId) {
+        const file = input.files[0];
+        const imagePreview = document.getElementById(imagePreviewId);
+
+        // Vérifier si un fichier a été sélectionné
+        if (file) {
+            // Créer un objet URL à partir du fichier sélectionné
+            const objectUrl = URL.createObjectURL(file);
+            // Mettre à jour la source de l'élément img avec l'URL de l'objet
+            imagePreview.src = objectUrl;
+            // Afficher l'aperçu de l'image
+            imagePreview.style.display = 'block';
+        } else {
+            // Si aucun fichier n'est sélectionné, masquer l'aperçu de l'image
+            imagePreview.src = '#';
+            imagePreview.style.display = 'none';
+        }
+    }
+</script>
+
+
+{% endblock %}
+

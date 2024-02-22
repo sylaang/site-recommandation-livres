@@ -1,69 +1,61 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Livre index
 {% endblock %}
 
 {% block body %}
 
-	<h1>Livre index</h1>
-
-	<div class="table-responsive">
-		<table class="table table-striped table-hover">
-			<thead class="thead-dark">
-				<tr>
-					<th>Id</th>
-					<th>Couverture</th>
-					<th>Titre</th>
-					<th>Genre</th>
-					<th>Description courte</th>
-					<th>Description</th>
-					<th>Nombre de pages</th>
-					<th>Liens</th>
-					<th>CreatedAt</th>
-					<th>UpdatedAt</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for livre in livres %}
-						<td>{{ livre.id }}</td>
-						<td><img src="{{ asset('img/books-picture/') ~ livre.couverture }}" class="img-fluid" alt="Couverture" style="max-width: 150px;"></td>
-						<td>{{ livre.titre }}</td>
-						<td>
-							{% for genre in livre.genre %}
-								{{ genre.genre }}
-								{% if not loop.last %},
-								{% endif %}
-							{% endfor %}
-						</td>
-						<td>{{ livre.shortDescription }}</td>
-						<td>{{ livre.description }}</td>
-						<td>{{ livre.nbrPage }}</td>
-						<td>
-							{% for achatUrl in livre.achatUrls %}
-								{% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
-								<a href="{{ achatUrl.url }}">
-									{% if domain %}
-										<img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=50" alt="Icône de site">
-									{% endif %}
-								</a>
-							{% endfor %}
-						</td>
-						<td>{{ livre.createdAt ? livre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-						<td>{{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-						<td>
-							<a href="{{ path('app_admin_livre_show', {'id': livre.id}) }}" class="btn btn-primary">Show</a>
-							<a href="{{ path('app_admin_livre_edit', {'id': livre.id}) }}" class="btn btn-warning">Edit</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="8">No records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
-
-	<a href="{{ path('app_admin_livre_new') }}">Create new</a>
+<div class="container">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="container">
+                <div class="row">
+                    <hr>
+                    <div class="col-md-12">
+                        <h1>Liste des Livres</h1>
+                        <br>
+                        <div class="book-list">
+                            {% for livre in livres %}
+                            <div class="book-item">
+                                <div class="book-details">
+                                    <img src="{{ asset('img/books-picture/') ~ livre.couverture }}" class="img-fluid" alt="Couverture" style="max-width: 150px;">
+                                    <p><strong>Titre :</strong> {{ livre.titre }}</p>
+                                    <p><strong>Genre :</strong>
+                                        {% for genre in livre.genre %}
+                                        {{ genre.genre }}{% if not loop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                    <p><strong>Description courte :</strong> {{ livre.shortDescription }}</p>
+                                    <p><strong>Description :</strong> {{ livre.description }}</p>
+                                    <p><strong>Nombre de pages :</strong> {{ livre.nbrPage }}</p>
+                                    <p><strong>Liens :</strong>
+                                        {% for achatUrl in livre.achatUrls %}
+										{% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
+                                        <a href="{{ achatUrl.url }}" target="_blank">
+                                            <img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=16" alt="Icône de site">
+                                        </a>
+                                        {% endfor %}
+                                    </p>
+                                    <p><strong>Créé le :</strong> {{ livre.createdAt ? livre.createdAt|date('Y-m-d H:i:s') : 'N/A' }}</p>
+                                    <p><strong>Mis à jour le :</strong> {{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : 'N/A' }}</p>
+                                    <button type="button" class="btn btn-primary" onclick="window.location='{{ path('app_admin_livre_show', {'id': livre.id}) }}'">Voir</button>
+                                    <button type="button" class="btn btn-warning" onclick="window.location='{{ path('app_admin_livre_edit', {'id': livre.id}) }}'">Modifier</button>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="book-item">
+                                <p>Aucun livre trouvé</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<hr>
+<div class="d-flex justify-content-center mb-5">
+    <a href="{{ path('app_admin_livre_new') }}" class="btn btn-primary">Créer un nouveau Livre</a>
+</div>
 {% endblock %}

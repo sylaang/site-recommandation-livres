@@ -51,8 +51,26 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Biographie = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $shortBiographie = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageBiographie = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $secondImageBiographie = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageReseauxSociaux = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $firstimageHome = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imgShortBiographie = null;
 
     public function __construct()
     {
@@ -249,6 +267,78 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBiographie(string $Biographie): static
     {
         $this->Biographie = $Biographie;
+
+        return $this;
+    }
+
+    public function getShortBiographie(): ?string
+    {
+        return $this->shortBiographie;
+    }
+
+    public function setShortBiographie(string $shortBiographie): static
+    {
+        $this->shortBiographie = $shortBiographie;
+
+        return $this;
+    }
+
+    public function getImageBiographie(): ?string
+    {
+        return $this->imageBiographie;
+    }
+
+    public function setImageBiographie(string $imageBiographie): static
+    {
+        $this->imageBiographie = $imageBiographie;
+
+        return $this;
+    }
+
+    public function getSecondImageBiographie(): ?string
+    {
+        return $this->secondImageBiographie;
+    }
+
+    public function setSecondImageBiographie(?string $secondImageBiographie): static
+    {
+        $this->secondImageBiographie = $secondImageBiographie;
+
+        return $this;
+    }
+
+    public function getImageReseauxSociaux(): ?string
+    {
+        return $this->imageReseauxSociaux;
+    }
+
+    public function setImageReseauxSociaux(?string $imageReseauxSociaux): static
+    {
+        $this->imageReseauxSociaux = $imageReseauxSociaux;
+
+        return $this;
+    }
+
+    public function getFirstimageHome(): ?string
+    {
+        return $this->firstimageHome;
+    }
+
+    public function setFirstimageHome(?string $firstimageHome): static
+    {
+        $this->firstimageHome = $firstimageHome;
+
+        return $this;
+    }
+
+    public function getImgShortBiographie(): ?string
+    {
+        return $this->imgShortBiographie;
+    }
+
+    public function setImgShortBiographie(?string $imgShortBiographie): static
+    {
+        $this->imgShortBiographie = $imgShortBiographie;
 
         return $this;
     }

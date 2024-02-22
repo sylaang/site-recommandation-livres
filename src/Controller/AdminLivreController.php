@@ -47,7 +47,7 @@ class AdminLivreController extends AbstractController
 
             if ($imagename) {
 
-                $imageCouverture_nom = $fileUploader->uploadLivre($imagename);                
+                $imageCouverture_nom = $fileUploader->uploadLivre($imagename, $livre);                
                 
                 $livre->setCouverture($imageCouverture_nom);
             }
@@ -104,7 +104,7 @@ class AdminLivreController extends AbstractController
 
             if ($imagename) {
 
-                $imageCouverture_nom = $fileUploader->uploadLivre($imagename);                
+                $imageCouverture_nom = $fileUploader->uploadLivre($imagename, $livre);                
                 
                 $livre->setCouverture($imageCouverture_nom);
             }

@@ -43,12 +43,12 @@ class AdminRepository extends ServiceEntityRepository implements PasswordUpgrade
      * @return array
      */
     public function findAdminInfos(): array
-{
-    return $this->createQueryBuilder('a')
-        ->select('a.nom', 'a.prenom', 'a.Biographie')
-        ->getQuery()
-        ->getResult();
-}
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a.nom', 'a.prenom', 'a.Biographie', 'a.shortBiographie', 'a.imageBiographie', 'a.secondImageBiographie', 'a.imageReseauxSociaux', 'a.firstimageHome', 'a.imgShortBiographie')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Admin[] Returns an array of Admin objects

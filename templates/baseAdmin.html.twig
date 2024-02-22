@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Découvrez Philippe Popieul, un auteur polyvalent, ayant déjà écrit un ouvrage technique sur la transformation digitale et se lançant maintenant dans la préparation d’un roman de science fiction sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour différents genres littéraires.">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+
+    {#_______________________________________________________________FONT_AWESOME________________________________________________#}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    {#_______________________________________________________________GOOGLE_FONTS________________________________________________#}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+
+    {#___________________________________________________________________MDB________________________________________________#}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet">
+
+    {#_______________________________________________________________HEADER_MAIN_SITE________________________________________________#}
+    <link href="{{ asset('css/siteAdmin.css') }}" rel="stylesheet">
+
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+
+</head>
+
+<body>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <div class="area">
+    <nav class="main-menu">
+        <ul>
+            <li>
+                <a href="{{path('app_admin_index')}}">
+                    <i class="fa fa-users fa-2x"></i>
+                    <span class="nav-text">
+                        Auteurs
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="{{path('app_admin_new')}}">
+                    <i class="fa fa-user-plus fa-2x"></i>
+                    <span class="nav-text">
+                        Ajouter un Auteur
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="{{path('app_admin_show')}}">
+                    <i class="fa fa-user fa-2x"></i>
+                    <span class="nav-text">
+                        Mon profil
+                    </span>
+                </a>                
+            </li>
+
+            <li class="has-subnav">
+                <a href="{{path('app_admin_livre_index')}}">
+                    <i class="fa fa-book fa-2x"></i>
+                    <span class="nav-text">
+                        Ouvrages
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{path('app_admin_livre_new')}}">
+                    <i class="fa fa-plus-square fa-2x"></i>
+                    <span class="nav-text">
+                        Nouveau livre
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="logout">
+            <li>
+                <a href="{{path('app_home')}}">
+                    <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">
+                        Sortie
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+
+
+
+    <!-- ____________________________________MDB_______________________________-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- ____________________________________NAV_______________________________-->
+    <script src="{{ asset('js/nav.js') }}"></script>
+
+
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
+
+</html>
