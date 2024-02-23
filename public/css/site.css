@@ -159,7 +159,7 @@ h1 {
     }
 }
 /* Styles pour les écrans de petite taille (mobile) */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     .navbar ul li a {
         font-size: 90%;
         /* Ajuster la taille de la police des liens */

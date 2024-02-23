@@ -1,38 +1,208 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AproposController!{% endblock %}
+{% block title %}Hello AproposController!
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/apropos.css')}}">
+{% endblock %}
 
 {% block body %}
 
 
-<div class="example-wrapper">
-    <h1 class="text-center mb-10 font-weight-bold display-1 text-black py-5" style="border-bottom: 2px solid black; padding-bottom: 2px;">À Propos</h1>
+
+<style>
+
+.scroll-text {
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+    border: 1px solid #000000;
+    padding: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-text::-webkit-scrollbar {
+    display: none;
+}
+
+.h1-apropos {
+    border-bottom: 2px solid black; padding-bottom: 2px;
+}
+
+.text-apropos {
+    margin-left: 5vw; line-height: 1.6;
+}
+    .div-img-apropos  {
+        width: 100%; height: 100%; position: absolute; bottom: 4vh; right: 2vw;
+    }
+
+    .spacing-page {
+        height: 20vh;
+    }
+    .border-img {
+        width: 100%; height: 424.34px; padding: 50px; position: relative;
+    }
+
+@media screen and (max-width: 820px) {
+    .text-apropos{
+       margin-top: 100%;
+    }
+    .border-img {
+        width: 95vw;
+    }
+    .spacing-page {
+        height: 5vh;
+    }
+
+    
+    
+}
+@media screen and (max-width: 768px) {
+    .text-apropos{
+       margin-top: 100%;
+    }
+    .border-img {
+        width: 95vw;
+    }
+    .spacing-page {
+        height: 5vh;
+    }
+    
+    
+}
+@media screen and (max-width: 560px) {
+    .text-apropos{
+        margin-top: 5vh;
+        margin-left: 10vw;
+    }
+            .div-img-apropos  {
+        right: 8%;
+    }
+    .spacing-page {
+        height: 5vh;
+    }
+}
+@media screen and (max-width: 414px) {
+    .m-img {
+        width: 95%;
+    }
+    .text-apropos{
+        margin-top: 5vh;
+        margin-left: 8vw;
+    }
+            .div-img-apropos  {
+        right: 8%;
+    }
+    .spacing-page {
+        height: 5vh;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .m-img {
+        width: 95%;
+    }
+        .div-img-apropos  {
+        right: 8%;
+    }
+    .text-apropos{
+        margin-top: 5vh;
+        margin-right: 10vw;
+    }
+    .spacing-page {
+        height: 5vh;
+    }
+}
 
 
-                {% for adminInfo in adminInfos %}
-    <div class="container">
-        <div class="row">
-          <div class="col-md-2">
-            <div class="border border-2 border-dark" style="width: 459px; height: 424.34px; padding: 50px; position: relative;">
-              <div style="width: 100%; height: 100%; position: absolute; bottom: 4vh; right: 2vw;">
-                <img style="width: 100%; height: 100%;" src="{{ asset('img/apropos/') ~ adminInfo.imageBiographie }}" alt="Image Biographie">
-              </div>
-              <!-- Contenu de votre cadre -->
+
+</style>
+	{% for adminInfo in adminInfos %}
+		<div class="container">
+	        <h1 class="h1-apropos text-center mb-10 font-weight-bold display-1 text-black py-5">À Propos</h1>
+			<div class="row">
+				<div class="col-md-4 col-sm-12">
+					<div class="border-img border border-2 border-dark">
+						<div class="div-img-apropos">
+							<img style="width: 100%; height: 100%;" src="{{ asset('img/apropos/') ~ adminInfo.imageBiographie }}" alt="Image Biographie">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8 col-sm-12">
+					<div class="text-apropos text-container text-center text-md-start">
+						<h2>{{adminInfo.prenom}}
+							{{adminInfo.nom}}</h2>
+						<p class="scroll-text">{{adminInfo.Biographie}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <div class="spacing-page"></div>
+
+		<div class="tree_img_in_one">
+			<div class="block">
+				<div class="side -main" style="background-image: url('{{ asset('img/second-apropos/') ~ adminInfo.secondImageBiographie }}');"></div>
+				<div class="side -left" style="background: url('{{ asset('img/second-apropos/') ~ adminInfo.secondImageBiographie }}');"></div>
+			</div>
+			<div class="block">
+				<div class="side -main" style="background: url('{{ asset('img/second-apropos/') ~ adminInfo.secondImageBiographie }}');"></div>
+				<div class="side -left" style="background: url('{{ asset('img/second-apropos/') ~ adminInfo.secondImageBiographie }}');"></div>
+			</div>
+			<div class="block">
+				<div class="side -main" style="background: url('{{ asset('img/second-apropos/') ~ adminInfo.secondImageBiographie }}');"></div>
+				<div class="side -left" style="background: url('{{ asset('img/second-apropos/') ~ adminInfo.secondImageBiographie }}');"></div>
+			</div>
+		</div>
+
+
+        <div class="container-fluid pb-5">
+            <div class="row" style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
+                <div class="col-md-5 col-sm-12 p-0">
+                    <div style="background-image: url('{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+                </div>
+                <!-- Contenu de réseaux sociaux -->
+                <div class="col-md-7 col-sm-12 p-5">
+                    <h2>
+                        <strong style="color: black;">Découvrez les réseaux de Philippe Popieul</strong>
+                    </h2>
+        
+                    <!-- LinkedIn -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="pt-4">
+                                <i class="fab fa-linkedin"></i>
+                                <strong style="color: black;">LinkedIn</strong>
+                            </h3>
+                            <div class="col-md-6">
+                                <p>En suivant Philippe sur LinkedIn, vous en saurez plus sur ses avancées professionnelles et littéraires.</p>
+                                <!-- Ajoutez ici le lien vers le profil LinkedIn de Philippe -->
+                                <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.location.href='https://www.linkedin.com/in/philippepopieul/'">S'abonner</button>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Instagram -->
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <h3 class="pt-4">
+                                <i class="fab fa-instagram" style="color: #e4405f;"></i>
+                                <strong style="color: black;">Instagra</strong>m</h3>
+                            <div class="col-md-6">
+                                <p>En suivant Philippe Popieul sur Instagram, vous aurez l’opportunité de découvrir des publications plus fréquentes sur les thématiques portant sur son ouvrage en cours et ceux à paraître.</p>
+                                <!-- Ajoutez ici le lien vers la page Instagram de Philippe -->
+                                <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.location.href='https://www.instagram.com/philippe.popieul/'">Suivre</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <div class="text-container text-start" style="margin-left: 5vw;">
-
-              <h2>{{adminInfo.prenom}} {{adminInfo.nom}}</h2>
-              <p>{{adminInfo.Biographie}} </p>                    
-            </div>
-          </div>
         </div>
-      </div>
-                <img style="width: 100%; height: 100%;" src="{{ asset('img/second-apropos/') ~ adminInfo.secondImageBiographie }}" alt="Image Biographie">
-                <img style="width: 100%; height: 100%;" src="{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}" alt="Image Biographie">
 
-                {% endfor %}
+
+	{% endfor %}
 
 {% endblock %}
