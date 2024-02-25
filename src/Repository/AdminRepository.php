@@ -45,7 +45,7 @@ class AdminRepository extends ServiceEntityRepository implements PasswordUpgrade
     public function findAdminInfos(): array
     {
         return $this->createQueryBuilder('a')
-            ->select('a.nom', 'a.prenom', 'a.Biographie', 'a.shortBiographie', 'a.imageBiographie', 'a.secondImageBiographie', 'a.imageReseauxSociaux', 'a.firstimageHome', 'a.imgShortBiographie')
+            ->select('a.nom', 'a.prenom', 'a.Biographie', 'a.shortBiographie', 'a.email', 'a.imageBiographie', 'a.secondImageBiographie', 'a.imageReseauxSociaux', 'a.firstimageHome', 'a.imgShortBiographie')
             ->getQuery()
             ->getResult();
     }

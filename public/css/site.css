@@ -64,19 +64,17 @@ h1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* Calcul de la hauteur restante après déduction de la hauteur de la navbar */
+    height: 100vh;
     z-index: 0;
 }
 
 .navbar {
     background-color: #ffffff;
     justify-content: center;
-    /* Centrer horizontalement */
     align-items: center;
-    /* Centrer verticalement */
     position: fixed;
     width: 100%;
-    z-index: 10;
+    z-index: 100;
 
 }
 
@@ -85,8 +83,7 @@ h1 {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
-    /* Ajoute d'autres styles selon tes besoins */
+    z-index: 100;
 }
 
 .navbar ul {
@@ -95,9 +92,7 @@ h1 {
     padding: 0;
     display: flex;
     align-items: center;
-    /* Centrer verticalement les éléments de la liste */
     height: 12vh;
-    /* Hauteur de la navbar */
 }
 
 .navbar ul li {
@@ -106,11 +101,8 @@ h1 {
 
 .navbar ul li a {
     color: #000;
-    /* Couleur du texte des liens */
     font-size: 1.3rem;
-    /* Ajuster la taille de la police des liens */
     position: relative;
-    /* Position relative pour permettre le positionnement de l'élément ::before */
 }
 
 .navbar ul li.logo {
@@ -130,7 +122,6 @@ h1 {
     left: 0;
     background-color: #000000;
     transition: width 0.3s ease;
-    /* Transition pour l'effet de sous-ligne */
 }
 
 .navbar ul li a:hover::before {
@@ -139,18 +130,15 @@ h1 {
 
 .navbar ul li a:hover {
     text-decoration: none;
-    /* Désactiver la soulignement par défaut lors du survol */
 }
 
 @media screen and (max-width: 1024px) {
     .navbar ul li a {
         font-size: 90%;
-        /* Ajuster la taille de la police des liens */
     }
 
     .navbar ul li a img {
         height: 120px;
-        /* Réduire la taille du logo */
     }
     .overlay {
         font-size: 70%;
@@ -158,16 +146,13 @@ h1 {
         margin-top: 40vh;
     }
 }
-/* Styles pour les écrans de petite taille (mobile) */
 @media screen and (max-width: 768px) {
     .navbar ul li a {
         font-size: 90%;
-        /* Ajuster la taille de la police des liens */
     }
 
     .navbar ul li a img {
         height: 120px;
-        /* Réduire la taille du logo */
     }
     .overlay {
         font-size: 70%;
@@ -177,15 +162,12 @@ h1 {
 }
 
 @media screen and (max-width: 560px) {
-    /* Styles CSS pour les smartphones en orientation portrait */
     .navbar ul li a {
         font-size: 60%;
-        /* Ajuster la taille de la police des liens */
     }
 
     .navbar ul li a img {
         height: 50px;
-        /* Réduire la taille du logo */
     }
     .overlay {
         font-size: 90%;
@@ -194,15 +176,12 @@ h1 {
     }
 }
 @media screen and (max-width: 414px) {
-    /* Styles CSS pour les smartphones en orientation portrait */
     .navbar ul li a {
         font-size: 50%;
-        /* Ajuster la taille de la police des liens */
     }
 
     .navbar ul li a img {
         height: 60px;
-        /* Réduire la taille du logo */
     }
     .overlay {
         width: 90vw;
@@ -211,15 +190,12 @@ h1 {
 }
 
 @media screen and (max-width: 376px) {
-    /* Styles CSS pour les petits smartphones */
     .navbar ul li a {
         font-size: 45%;
-        /* Ajuster la taille de la police des liens */
     }
 
     .navbar ul li a img {
         height: 35px;
-        /* Réduire la taille du logo */
     }
     .overlay {
         width: 100vw;

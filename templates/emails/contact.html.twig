@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('css/emails.css') }}">
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+
+        p {
+            color: #666666;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            color: #333333;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Demande de contact</h1>
+        <p><strong>Nom :</strong> {{ contact.nom }} {{ contact.prenom }}</p>
+        <p><strong>Email :</strong> {{ contact.mail }}</p>
+        <p><strong>Sujet :</strong> {{ contact.subject }}</p>
+        <p><strong>Message :</strong></p>
+        <div class="message">
+            {{ contact.message|raw }}
+        </div>
+    </div>
+</body>
+</html>

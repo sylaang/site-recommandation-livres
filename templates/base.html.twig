@@ -45,7 +45,7 @@
     <li><a href="{{ path('app_apropos') }}">À propos</a></li>
     <li class="logo"><a href="{{ path('app_home') }}"><img src="{{ asset('img/logo/logo-entreprise.svg') }}" alt="Mon Logo"></a></li>
     <li><a href="{{ path('app_livre_index') }}">Ouvrage</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="{{ path('app_contact') }}">Contact</a></li>
     {% if not is_granted('ROLE_ADMIN') %}
     <li><a style="position: absolute; right: 50px; top: 5vh;" href="{{ path('app_login') }}"><i class="fas fa-user"></i></a></li>
     {% endif %}

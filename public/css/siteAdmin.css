@@ -124,7 +124,7 @@ height: 100%;
 }
 
 .content {
-    flex-grow: 1; /* Permet au contenu de prendre tout l'espace restant */
+    flex-grow: 1;
     overflow: hidden;
     height: 100%;
 }

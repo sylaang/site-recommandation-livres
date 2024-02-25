@@ -1,0 +1,171 @@
+.ml {
+    margin-left: 20%;
+}
+.slot-one {
+    position: absolute; left: 15%; top: 35vh;
+}
+.slot-one-img {
+    height: 30vh; width: 25vw; box-shadow: 0px 10px 30px #000000ce, 0 0px 15px 0px #000000ce; z-index: 1;
+}
+.slot-one-text {
+    position: absolute; top: 50%; left: 70%; transform: translate(-50%, -50%); color: black; line-height: 3.5em; z-index: 2
+}
+.slot-one-email {
+    margin-left: 1vw;
+}
+.slot-two {
+    background-color: #30588c03;
+    height: 70vh; 
+    width: 50vw; 
+    box-shadow: 1px -1px 0px #000000ce, 0 0px 2px -1px #000000ce; z-index: 15; 
+    border-radius: 2% 10%;
+}
+.custom-button {
+    background-color: #30588c;
+    color: white;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.custom-button:hover {
+    transform: scale(1.1);
+}
+
+
+
+@media screen and (max-width: 1024px) {
+.slot-one {
+    position: absolute; left: 0%; top: 35%;
+}
+.slot-one-img {
+    height: 20vh; width: 35vw; box-shadow: 0px 10px 30px #000000ce, 0 0px 15px 0px #000000ce; z-index: 1;
+}
+.slot-one-text {
+    position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%); color: black; line-height: 3.5em; z-index: 2
+}
+.slot-one-email {
+    margin-left: 1vw;
+}
+.slot-two {
+    background-color: #30588c03;
+    height: 55%; 
+    width: 60vw; 
+    box-shadow: 1px -1px 0px #000000ce, 0 0px 2px -1px #000000ce; z-index: 15; 
+    border-radius: 2% 10%;
+}
+}
+@media screen and (max-width: 820px) {
+.slot-one {
+    position: absolute; left: 5%; top: 35%;
+}
+.slot-one-img {
+    height: 20vh; width: 35vw; box-shadow: 0px 10px 30px #000000ce, 0 0px 15px 0px #000000ce; z-index: 1;
+}
+.slot-one-text {
+    position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%); color: black; line-height: 3.5em; z-index: 2
+}
+.slot-one-email {
+    margin-left: 1vw;
+}
+.slot-two {
+    background-color: #30588c03;
+    height: 55%; 
+    width: 60vw; 
+    box-shadow: 1px -1px 0px #000000ce, 0 0px 2px -1px #000000ce; z-index: 15; 
+    border-radius: 2% 10%;
+}
+}
+
+@media screen and (max-width: 768px) {
+.slot-one {
+    position: absolute; left: 5%; top: 40%;
+}
+.slot-one-img {
+    height: 20vh; width: 35vw; box-shadow: 0px 10px 30px #000000ce, 0 0px 15px 0px #000000ce; z-index: 1;
+}
+.slot-one-text {
+    position: absolute; top: 50%; left: 70%; transform: translate(-50%, -50%); color: black; line-height: 3.5em; z-index: 2
+}
+.slot-one-email {
+    margin-left: 1vw;
+}
+.slot-two {
+    background-color: #30588c03;
+    height: 55%; 
+    width: 60vw; 
+    box-shadow: 1px -1px 0px #000000ce, 0 0px 2px -1px #000000ce; z-index: 15; 
+    border-radius: 2% 10%;
+}
+}
+
+@media screen and (max-width: 560px) {
+
+.ml {
+    margin-left: 5%;
+}
+.slot-one {
+    position: absolute; left: 20%; top: 28%;
+}
+.slot-one-img {
+    height: 25vh; width: 60vw; box-shadow: 0px 10px 30px #000000ce, 0 0px 15px 0px #000000ce; z-index: 1;
+}
+.slot-one-text {
+    position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%); color: black; line-height: 3.5em; z-index: 2;
+}
+.slot-two {
+    padding-top: 10%;
+    margin-top: 70%;
+    height: 90%; 
+    width: 90vw; 
+    box-shadow: -1px 1px 0px #000000ce, 0 0 2px -1px #000000ce; z-index: 15;
+}
+}
+
+@media screen and (max-width: 414px) {
+
+.ml {
+    margin-left: 5%;
+}
+.slot-one {
+    position: absolute; left: 20%; top: 28%;
+}
+.slot-one-img {
+    height: 25vh; width: 60vw; box-shadow: 0px 10px 30px #000000ce, 0 0px 15px 0px #000000ce; z-index: 1;
+}
+.slot-one-text {
+    position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%); color: black; line-height: 3.5em; z-index: 2;
+}
+.slot-two {
+    padding-top: 10%;
+    margin-top: 70%;
+    height: 90%; 
+    width: 90vw; 
+    box-shadow: -1px 1px 0px #000000ce, 0 0 2px -1px #000000ce; z-index: 15;
+}
+}
+
+@media screen and (max-width: 376px) {
+
+.ml {
+    margin-left: 5%;
+}
+.slot-one {
+    position: absolute; left: 20%; top: 28%;
+}
+.slot-one-img {
+    height: 30vh; width: 60vw; box-shadow: 0px 10px 30px #000000ce, 0 0px 15px 0px #000000ce; z-index: 1;
+}
+.slot-one-text {
+    position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%); color: black; line-height: 3.5em; z-index: 2;
+}
+.slot-two {
+    padding-top: 10%;
+    margin-top: 70%;
+    height: 90%; 
+    width: 90vw; 
+    box-shadow: -1px 1px 0px #000000ce, 0 0 2px -1px #000000ce; z-index: 15;
+}
+}
