@@ -1,5 +1,8 @@
 twig:
     form_themes: ['bootstrap_4_layout.html.twig']
+    globals:
+        titres: '@App\Twig\OuvragesTitreExtension'
+        slogan: '@App\Twig\SloganExtension'
 
 when@test:
     twig:

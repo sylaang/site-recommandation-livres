@@ -72,6 +72,15 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imgShortBiographie = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $slogan = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imgLogo = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imgLogoTrans = null;
+
     public function __construct()
     {
         $this->livres = new ArrayCollection();
@@ -339,6 +348,42 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     public function setImgShortBiographie(?string $imgShortBiographie): static
     {
         $this->imgShortBiographie = $imgShortBiographie;
+
+        return $this;
+    }
+
+    public function getSlogan(): ?string
+    {
+        return $this->slogan;
+    }
+
+    public function setSlogan(?string $slogan): static
+    {
+        $this->slogan = $slogan;
+
+        return $this;
+    }
+
+    public function getImgLogo(): ?string
+    {
+        return $this->imgLogo;
+    }
+
+    public function setImgLogo(?string $imgLogo): static
+    {
+        $this->imgLogo = $imgLogo;
+
+        return $this;
+    }
+
+    public function getImgLogoTrans(): ?string
+    {
+        return $this->imgLogoTrans;
+    }
+
+    public function setImgLogoTrans(?string $imgLogoTrans): static
+    {
+        $this->imgLogoTrans = $imgLogoTrans;
 
         return $this;
     }

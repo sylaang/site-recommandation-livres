@@ -81,6 +81,8 @@ class AdminController extends AbstractController
             $imagename3 = $form->get('imageReseauxSociaux')->getData();
             $imagename4 = $form->get('firstImageHome')->getData();
             $imagename5 = $form->get('ImgShortBiographie')->getData();
+            $imagename6 = $form->get('imgLogo')->getData();
+            $imagename7 = $form->get('imgLogoTrans')->getData();
 
             if ($imagename) {
 
@@ -111,6 +113,18 @@ class AdminController extends AbstractController
                 $ImgShortBiographie_nom = $fileUploader->uploadImgShortBiographie($imagename5, $admin);                
                 
                 $admin->setImgShortBiographie($ImgShortBiographie_nom);
+            }
+            if ($imagename6) {
+
+                $ImgLogo_nom = $fileUploader->uploadImgLogo($imagename6, $admin);                
+                
+                $admin->setImgLogo($ImgLogo_nom);
+            }
+            if ($imagename7) {
+
+                $ImgLogoTrans_nom = $fileUploader->uploadImgLogoTrans($imagename7, $admin);                
+                
+                $admin->setImgLogoTrans($ImgLogoTrans_nom);
             }
 
             $admin->setUpdatedAt(new \DateTimeImmutable());

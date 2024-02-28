@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CGUController extends AbstractController
+class MentionsLegalesController extends AbstractController
 {
-    #[Route('/Condition-Général-de-ventes', name: 'app_cgu')]
+    #[Route('/Mentions-legales', name: 'app_mentions_legales')]
     public function index(): Response
     {
-        return $this->render('cgu/index.html.twig', [
-            'controller_name' => 'CGUController',
+        return $this->render('mentions_legales/index.html.twig', [
+            'controller_name' => 'MentionsLegalesController',
         ]);
     }
 }

@@ -1,49 +1,91 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Livre index{% endblock %}
+{% block title %}Livre index
+{% endblock %}
 
 {% block body %}
-<div style="height: 20vh;"></div>
 
-<div class="container-fluid">
-    <div class="container">
-        <h1 class="text-center mb-4 font-weight-bold display-1 text-black py-5" style="border-bottom: 2px solid black; padding-bottom: 2px;">Ouvrages</h1>
-        <hr>
-        {% for livre in livres %}
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-4">
-                <img src="{{ asset('img/books-picture/') ~ livre.couverture }}" class="rounded img-fluid"
-                    alt="Couverture du livre">
-            </div>
-            <div class="col-md-12 text-center">
-                <h2 class="font-weight-bold display-4 text-black ">{{ livre.titre }}</h2>
-                <br>
-                <p class="text-md-left text-sm-center lead text-black text-break">{{ livre.shortDescription }}</p>
-                <div class="text-center">
-                    <button type="button" class="btn btn-light btn-outline-dark btn-animate"
-                        onclick="window.location='{{ path('app_livre_show', {'id': livre.id}) }}'">Voir plus</button>
-                </div>
-                <style>
-                    .btn-animate {
-                        transition: transform 0.3s ease;
-                    }
-                
-                    .btn-animate:hover {
-                        transform: scale(1.1);
-                    }
-                </style>
-                <br>
-                {% for adminInfo in adminInfos %}
-                <small> <strong class="text-black">{{adminInfo.prenom}} {{adminInfo.nom}}</strong> </small>
-                {% endfor %}
-            </div>
-        </div>
-        <hr>
-        {% else %}
-        <p class="text-center">Aucun livre trouvé.</p>
-        {% endfor %}
-    </div>
-</div>
+	<div class="container-fluid">
+		<div class="container">
+			<h1 class="text-center mb-4 font-weight-bold display-1 text-black py-5" style="border-bottom: 2px solid black; padding-bottom: 2px;">Ouvrages</h1>
+			<hr>
+			{% for livre in livres %}
+				<div class="row justify-content-center">
+					<div class="col-md-6 text-center mb-4">
+						<img src="{{ asset('img/books-picture/') ~ livre.couverture }}" class="rounded img-fluid" alt="Couverture du livre">
+					</div>
+					<div class="col-md-12 text-center">
+						<h2 class="font-weight-bold display-4 text-black ">{{ livre.titre }}</h2>
+						<br>
+						<p class="text-md-left text-sm-center lead text-black text-break">{{ livre.shortDescription }}</p>
+						<div class="text-center">
+							<button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.location='{{ path('app_livre_show', {'id': livre.id}) }}'">Voir plus</button>
+						</div>
+						<style>
+							.btn-animate {
+								transition: transform 0.3s ease;
+							}
+
+							.btn-animate:hover {
+								transform: scale(1.1);
+							}
+						</style>
+						<br>
+						{% for adminInfo in adminInfos %}
+							<small>
+								<strong class="text-black">{{adminInfo.prenom}}
+									{{adminInfo.nom}}</strong>
+							</small>
+						{% endfor %}
+					</div>
+				</div>
+				<hr>
+			{% else %}
+				<p class="text-center">Aucun livre trouvé.</p>
+			{% endfor %}
+		</div>
+	</div>
+
+    	{% for adminInfo in adminInfos %}        
+	<div class="container-fluid pt-5 mt-5">
+		<div class="row" style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
+			<div class="col-md-5 col-sm-12 p-0">
+				<div style="background-image: url('{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+			</div>
+			<div class="col-md-7 col-sm-12 p-5">
+				<h2>
+					<strong style="color: black;">Découvrez les réseaux de Philippe Popieul</strong>
+				</h2>
+
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="pt-4">
+							<i class="fab fa-linkedin"></i>
+							<strong style="color: black;">LinkedIn</strong>
+						</h3>
+						<div class="col-md-6">
+							<p>En suivant Philippe sur LinkedIn, vous en saurez plus sur ses avancées professionnelles et littéraires.</p>
+                        <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.linkedin.com/in/philippepopieul/', '_blank')">S'abonner</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-4">
+					<div class="col-md-12">
+						<h3 class="pt-4">
+							<i class="fab fa-instagram" style="color: #e4405f;"></i>
+							<strong style="color: black;">Instagram</strong></h3>
+						<div class="col-md-6">
+							<p>En suivant Philippe Popieul sur Instagram, vous aurez l’opportunité de découvrir des publications plus fréquentes sur les thématiques portant sur son ouvrage en cours et ceux à paraître.</p>
+                        <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.instagram.com/philippe.popieul/', '_blank')">Suivre</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    {% endfor %}
+
 
 
 {% endblock %}

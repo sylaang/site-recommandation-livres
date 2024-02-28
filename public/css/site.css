@@ -110,7 +110,7 @@ h1 {
 }
 
 .navbar ul li a img {
-    height: 150px;
+    height: 120px;
 }
 
 .navbar ul li a::before {
@@ -148,7 +148,7 @@ h1 {
 }
 @media screen and (max-width: 768px) {
     .navbar ul li a {
-        font-size: 90%;
+        font-size: 100%;
     }
 
     .navbar ul li a img {
@@ -163,43 +163,43 @@ h1 {
 
 @media screen and (max-width: 560px) {
     .navbar ul li a {
-        font-size: 60%;
+        font-size: 50%;
     }
 
     .navbar ul li a img {
         height: 50px;
     }
     .overlay {
-        font-size: 90%;
+        font-size: 50%;
         width: 80vw;
 
     }
 }
 @media screen and (max-width: 414px) {
     .navbar ul li a {
-        font-size: 50%;
+        font-size: 40%;
     }
 
     .navbar ul li a img {
-        height: 60px;
+        height: 25px;
     }
     .overlay {
         width: 90vw;
-        font-size: 55%;
+        font-size: 38%;
     }
 }
 
 @media screen and (max-width: 376px) {
     .navbar ul li a {
-        font-size: 45%;
+        font-size: 35%;
     }
 
     .navbar ul li a img {
-        height: 35px;
+        height: 25px;
     }
     .overlay {
         width: 100vw;
-        font-size: 50%;
+        font-size: 35%;
     }
 }
 

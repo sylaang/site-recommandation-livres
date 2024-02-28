@@ -16,12 +16,8 @@ class AdminType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('password')
             ->add('nom')
-            ->add('prenom')
-            ->add('shortBiographie', TextareaType::class, [
-                'required' => TRUE,
-            ])
+            ->add('prenom')            
             ->add('firstImageHome', FileType::class, [
                 'label' => false,
     
@@ -78,9 +74,8 @@ class AdminType extends AbstractType
                     ])
                 ],
             ])
-
-            ->add('biographie', TextareaType::class, [
-                'required' => false,
+            ->add('shortBiographie', TextareaType::class, [
+                'required' => TRUE,
             ])
             ->add('ImgShortBiographie', FileType::class, [
                 'label' => false,
@@ -99,6 +94,37 @@ class AdminType extends AbstractType
 
             ->add('biographie', TextareaType::class, [
                 'required' => false,
+            ])
+            ->add('slogan', TextareaType::class, [
+                'required' => false,
+            ])
+            ->add('imgLogo', FileType::class, [
+                'label' => false,
+    
+                'mapped' => false,
+    
+                'required' => false,
+    
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2000k',
+                        'mimeTypesMessage' => 'Attention ne pas dépasser 2000k',
+                    ])
+                ],
+            ])
+            ->add('imgLogoTrans', FileType::class, [
+                'label' => false,
+    
+                'mapped' => false,
+    
+                'required' => false,
+    
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2000k',
+                        'mimeTypesMessage' => 'Attention ne pas dépasser 2000k',
+                    ])
+                ],
             ])
         ;
     }

@@ -18,6 +18,8 @@ class FileUploader
         private $targetDirectoryThirdApropos,
         private $targetDirectoryFirstImageHome,
         private $targetDirectoryImgShortBiographie,
+        private $targetDirectoryImgLogo,
+        private $targetDirectoryImgLogoTrans,
         private SluggerInterface $slugger,
         private Filesystem $filesystem,
     ) {
@@ -217,5 +219,64 @@ class FileUploader
     public function getTargetDirectoryImgShortBiographie()
     {
         return $this->targetDirectoryImgShortBiographie;
+    }
+
+    public function uploadimgLogo(UploadedFile $file, Admin $admin)
+    {
+
+
+        $previousImage = $admin->getImgLogo();
+
+        // Vérifier si une image précédente existe
+        if ($previousImage) {
+            // Supprimer l'image précédente
+            $filesystem = new Filesystem();
+            $filesystem->remove($this->getTargetDirectoryImgLogo() . '/' . $previousImage);
+        }
+
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeFilename = $this->slugger->slug($originalFilename);
+        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+        try {
+            $file->move($this->getTargetDirectoryImgLogo(), $fileName);
+        } catch (FileException $e) {
+            // ... handle exception if something happens during file upload
+        }
+
+        return $fileName;
+    }
+    public function getTargetDirectoryImgLogo()
+    {
+        return $this->targetDirectoryImgLogo;
+    }
+    public function uploadimgLogoTrans(UploadedFile $file, Admin $admin)
+    {
+
+
+        $previousImage = $admin->getImgLogoTrans();
+
+        // Vérifier si une image précédente existe
+        if ($previousImage) {
+            // Supprimer l'image précédente
+            $filesystem = new Filesystem();
+            $filesystem->remove($this->getTargetDirectoryImgLogoTrans() . '/' . $previousImage);
+        }
+
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeFilename = $this->slugger->slug($originalFilename);
+        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+        try {
+            $file->move($this->getTargetDirectoryImgLogoTrans(), $fileName);
+        } catch (FileException $e) {
+            // ... handle exception if something happens during file upload
+        }
+
+        return $fileName;
+    }
+    public function getTargetDirectoryImgLogoTrans()
+    {
+        return $this->targetDirectoryImgLogoTrans;
     }
 }

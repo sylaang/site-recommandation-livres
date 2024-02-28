@@ -9,13 +9,10 @@
                 <div class="container-fluid">
                     <div class="row">
                         <hr>
-                        <!-- Votre contenu de la page ici -->
                         <div class="col-md-12">
                             <h1>Liste des Auteurs</h1>
                             <br>
-                            <!-- Insérez votre contenu ici -->
                             <div class="admin-list">
-                                <!-- Boucle sur les administrateurs -->
                                 {% for admin in admins %}
                                 <div class="admin-item">
                                     <div class="admin-details">
@@ -30,6 +27,9 @@
                                         <p><strong>Biographie :</strong> {{ admin.biographie }}</p>
                                         <p><strong>Deuxième image pour ma biographie :</strong> <img src="{{ asset('img/second-aPropos/') ~ admin.secondImageBiographie }}" class="img-fluid" alt="Second Image Biographie" style="max-width: 150px;"></p>
                                         <p><strong>Image de présentation de mes réseaux sociaux :</strong> <img src="{{ asset('img/third-aPropos/') ~ admin.imageReseauxSociaux }}" class="img-fluid" alt="Image Réseaux" style="max-width: 150px;"></p>
+                                        <p><strong>Slogan footer :</strong> {{ admin.slogan }}</p>
+                                        <p><strong>Votre logo :</strong> <img src="{{ asset('img/imgLogo/') ~ admin.imgLogo }}" class="img-fluid" alt="Image Réseaux" style="max-width: 150px;"></p>
+                                        <p><strong>Votre logo de transition de page :</strong> <img src="{{ asset('img/imgLogoTrans/') ~ admin.imgLogoTrans }}" class="img-fluid" alt="Image Réseaux" style="max-width: 150px;"></p>
                                         <p><strong>Crée le :</strong> {{ admin.createdAt ? admin.createdAt|date('Y-m-d H:i:s') : '' }}</p>
                                         <p><strong>Mis a jour le :</strong> {{ admin.updatedAt ? admin.updatedAt|date('d-m-Y H:i:s') : '' }}</p>
                                             <button type="button" class="btn btn-primary" onclick="window.location='{{ path('app_admin_show', {'id': admin.id}) }}'">Voir</button>

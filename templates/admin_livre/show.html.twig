@@ -3,40 +3,43 @@
 {% block title %}Livre{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Livre</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">Id:</div>
+                <div class="col-md-8">{{ livre.id }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Couverture:</div>
+                <div class="col-md-8">{{ livre.couverture }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Titre:</div>
+                <div class="col-md-8">{{ livre.titre }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Description:</div>
+                <div class="col-md-8">{{ livre.description }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">CreatedAt:</div>
+                <div class="col-md-8">{{ livre.createdAt ? livre.createdAt|date('Y-m-d H:i:s') : '' }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">UpdatedAt:</div>
+                <div class="col-md-8">{{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : '' }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <a href="{{ path('app_admin_livre_index') }}" class="btn btn-primary">Back to list</a>
+            <a href="{{ path('app_admin_livre_edit', {'id': livre.id}) }}" class="btn btn-warning">Edit</a>
+            {{ include('admin_livre/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ livre.id }}</td>
-            </tr>
-            <tr>
-                <th>Couverture</th>
-                <td>{{ livre.couverture }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ livre.titre }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ livre.description }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ livre.createdAt ? livre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_admin_livre_index') }}">back to list</a>
-
-    <a href="{{ path('app_admin_livre_edit', {'id': livre.id}) }}">edit</a>
-
-    {{ include('admin_livre/_delete_form.html.twig') }}
 {% endblock %}

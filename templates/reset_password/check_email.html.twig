@@ -3,9 +3,34 @@
 {% block title %}Password Reset Email Sent{% endblock %}
 
 {% block body %}
-    <p>
-        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-    <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Vérifiez votre boîte de réception</h4>
+                <p>
+                    Si un compte correspondant à votre adresse e-mail existe, un e-mail sera d'être envoyé. Celui-ci contient un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
+                    Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                </p>
+                <hr>
+                <p class="mb-0">Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier de spam ou <a href="{{ path('app_forgot_password_request') }}" class="alert-link">essayer à nouveau</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+    <style>
+    .alert-info {
+    background-color: #f0f4f8; /* Couleur de fond plus douce */
+    border-color: #d1e7dd; /* Couleur de bordure légère */
+    color: #0f5132; /* Couleur du texte pour une meilleure lisibilité */
+}
+
+.alert-heading {
+    color: #055160; /* Couleur du titre pour attirer l'attention */
+}
+
+.alert-link {
+    color: #062c33; /* Couleur des liens pour se démarquer du texte normal */
+}
+    </style>
 {% endblock %}

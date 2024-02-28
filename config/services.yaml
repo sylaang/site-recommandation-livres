@@ -30,3 +30,7 @@ services:
             $targetDirectoryThirdApropos: '%kernel.project_dir%/public/img/third-apropos'
             $targetDirectoryFirstImageHome: '%kernel.project_dir%/public/img/firstImageHome'
             $targetDirectoryImgShortBiographie: '%kernel.project_dir%/public/img/ImgShortBiographie'
+            $targetDirectoryImgLogo: '%kernel.project_dir%/public/img/imgLogo'
+            $targetDirectoryImgLogoTrans: '%kernel.project_dir%/public/img/imgLogoTrans'
+    App\Twig\CustomTwigExtension:
+            tags: [twig.extension]

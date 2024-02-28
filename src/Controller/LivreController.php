@@ -18,7 +18,6 @@ class LivreController extends AbstractController
 {
 
     private $adminRepository;
-    private $livreRepository;
 
     public function __construct( AdminRepository $adminRepository)
     {

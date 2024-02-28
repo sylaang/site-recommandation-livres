@@ -2,8 +2,8 @@
 
 {% block title %}Hello ContactController!{% endblock %}
 {% block stylesheets %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <link rel="stylesheet" href="{{ asset('css/contact.css')}}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="{{ asset('css/contact.css')}}" />
 {% endblock %}
 
 {% block body %}
@@ -14,7 +14,7 @@
     <div class="container slot-one-text">
         <h1>Contactez moi</h1>
         <div clas="slot-one-email">
-            <p><i class="fa fa-envelope"></i> {{ adminInfo.email}}</p>
+            <p><i class="fa fa-envelope"></i> contact@philippepopieul.fr</p>
         </div>
         <div class="d-flex justify-content-center">
             <a href="https://www.instagram.com/philippe.popieul/" rel="noopener noreferrer">
@@ -34,46 +34,94 @@
                 <h2 class="text-center py-4">Entrer en contact</h2>
                 {{ form_start(contactForm) }}
                 <div class="ml">
-                <div class="row mb-5">
-                    <div class="col-sm-12">
-                        <div class="form-outline">
-                            {{ form_widget(contactForm.nom, { 'attr': {'placeholder': 'Nom*'} }) }}
+                    <div class="row mb-5">
+                        <div class="col-sm-12">
+                            <div class="form-outline">
+                                {{ form_widget(contactForm.nom, { 'attr': {'placeholder': 'Nom*'} }) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-outline">
+                                {{ form_widget(contactForm.prenom, { 'attr': {'placeholder': 'Prenom*'} }) }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="form-outline">
-                            {{ form_widget(contactForm.prenom, { 'attr': {'placeholder': 'Prenom*'} }) }}
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                {{ form_widget(contactForm.mail, { 'attr': {'placeholder': 'Adresse email*'} }) }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-md-12">
-                        <div class="form-outline">
-                            {{ form_widget(contactForm.mail, { 'attr': {'placeholder': 'Adresse email*'} }) }}
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                {{ form_widget(contactForm.subject, { 'attr': {'placeholder': 'Sujet*'} }) }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-md-12">
-                        <div class="form-outline">
-                            {{ form_widget(contactForm.subject, { 'attr': {'placeholder': 'Sujet*'} }) }}
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                {{ form_widget(contactForm.message, { 'attr': {'placeholder': 'Votre message*'} }) }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-md-12">
-                        <div class="form-outline">
-                            {{ form_widget(contactForm.message, { 'attr': {'placeholder': 'Votre message*'} }) }}
+                    <div class="row mb-5">
+                        <div class="col-md-12 text-center">
+                            <button id="send" class="custom-button animate__animated" type="submit">Envoyer</button>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-md-12 text-center">
-                        <button id="send" class="custom-button animate__animated" type="submit">Envoyer</button>
-                    </div>
-                </div>
                 </div>
                 {{ form_end(contactForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% for adminInfo in adminInfos %}
+<div class="container-fluid pt-5 mt-5">
+    <div class="row" style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
+        <div class="col-md-5 col-sm-12 p-0">
+            <div
+                style="background-image: url('{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}'); background-size: cover; background-position: center; width: 100%; height: 100%;">
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-12 p-5">
+            <h2>
+                <strong style="color: black;">Découvrez les réseaux de Philippe Popieul</strong>
+            </h2>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="pt-4">
+                        <i class="fab fa-linkedin"></i>
+                        <strong style="color: black;">LinkedIn</strong>
+                    </h3>
+                    <div class="col-md-6">
+                        <p>En suivant Philippe sur LinkedIn, vous en saurez plus sur ses avancées professionnelles et
+                            littéraires.</p>
+                        <button type="button" class="btn btn-light btn-outline-dark btn-animate"
+                            onclick="window.open('https://www.linkedin.com/in/philippepopieul/', '_blank')">S'abonner</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h3 class="pt-4">
+                        <i class="fab fa-instagram" style="color: #e4405f;"></i>
+                        <strong style="color: black;">Instagram</strong>
+                    </h3>
+                    <div class="col-md-6">
+                        <p>En suivant Philippe Popieul sur Instagram, vous aurez l’opportunité de découvrir des
+                            publications plus fréquentes sur les thématiques portant sur son ouvrage en cours et ceux à
+                            paraître.</p>
+                        <button type="button" class="btn btn-light btn-outline-dark btn-animate"
+                            onclick="window.open('https://www.instagram.com/philippe.popieul/', '_blank')">Suivre</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -84,18 +132,17 @@
 
 {% block javascripts %}
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var button = document.getElementById('send'); // Corrigé pour correspondre à l'ID du bouton
-    button.onclick = function() {
-        // Ajoute les classes pour l'animation
-        this.classList.add("animate__animated", "animate__backOutRight");
+    document.addEventListener("DOMContentLoaded", function () {
+        var button = document.getElementById('send');
+        button.onclick = function () {
 
-        // Optionnel : retire les classes après que l'animation soit terminée
-        this.addEventListener('animationend', function() {
-            this.classList.remove("animate__animated", "animate__backOutRight");
-        });
-    };
-});
+            this.classList.add("animate__animated", "animate__backOutRight");
+
+
+            this.addEventListener('animationend', function () {
+                this.classList.remove("animate__animated", "animate__backOutRight");
+            });
+        };
+    });
 </script>
 {% endblock %}
-

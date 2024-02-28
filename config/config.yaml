@@ -1,0 +1,4 @@
+twig:
+    # ...
+    globals:
+        ga_tracking: UA-xxxxx-x

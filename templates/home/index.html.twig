@@ -95,14 +95,39 @@
 														{{ adminInfo.nom }}
 													</small>
 												{% endfor %}
-												<button type="button" class="btn btn-light btn-outline-dark btn-animate d-block mt-3" onclick="window.location='{{ path('app_livre_show', {'id': livre.id}) }}'">Voir plus</button>
+												<div class="col-12 mt-4">
+													<p class="d-inline">Acheter :</p>
+													<div class="d-inline">
+														{% for achatUrl in livre.achatUrls %}
+														<a href="{{ achatUrl.url }}" class="">
+															{% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
+															{% if domain %}
+															<img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=128" alt="Icône de site" class="logo-icon" style="margin-left: 4rem;">
+															{% endif %}
+														</a>
+														{% endfor %}
+						
+												</div>
+
+												<div class="row col-6 mt-4" style="margin-left: 25%;">
+													<a href="{{ path('app_livre_show', {'id': livre.id}) }}" class="btn btn-light btn-outline-dark btn-animate d-block mt-3">Voir plus</a>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							{% endif %}
-						{% endfor %}
+							{% endfor %}
+
+						</div>
+
 					</div>
+					<style>
+					.logo-icon {
+						width: 32px; /* Largeur fixe */
+						height: 32px; /* Hauteur fixe */
+					}
+				</style>
 					<button class="carousel-control-prev custom-carousel-btn d-md-block" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="prev">
 						<span class="visually-hidden">Previous</span>
 					</button>
@@ -120,6 +145,47 @@
 			</div>
 		</div>
 	</div>
+	
+
+	{% for adminInfo in adminInfos %}        
+<div class="container-fluid pt-5 mt-5">
+    <div class="row" style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
+        <div class="col-md-5 col-sm-12 p-0">
+            <div style="background-image: url('{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+        </div>
+        <div class="col-md-7 col-sm-12 p-5">
+            <h2>
+                <strong style="color: black;">Découvrez les réseaux de Philippe Popieul</strong>
+            </h2>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="pt-4">
+                        <i class="fab fa-linkedin"></i>
+                        <strong style="color: black;">LinkedIn</strong>
+                    </h3>
+                    <div class="col-md-6">
+                        <p>En suivant Philippe sur LinkedIn, vous en saurez plus sur ses avancées professionnelles et littéraires.</p>
+                        <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.linkedin.com/in/philippepopieul/', '_blank')">S'abonner</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h3 class="pt-4">
+                        <i class="fab fa-instagram" style="color: #e4405f;"></i>
+                        <strong style="color: black;">Instagram</strong></h3>
+                    <div class="col-md-6">
+                        <p>En suivant Philippe Popieul sur Instagram, vous aurez l’opportunité de découvrir des publications plus fréquentes sur les thématiques portant sur son ouvrage en cours et ceux à paraître.</p>
+                        <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.instagram.com/philippe.popieul/', '_blank')">Suivre</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
 
 {% endblock %}

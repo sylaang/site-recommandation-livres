@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Admin{% endblock %}
+{% block title %}Page de profil{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -13,7 +13,7 @@
                         <hr>
                         <div class="admin-details">
                             <p><strong>Email:</strong> {{ admin.email }}</p>
-                            <p><strong>Password:</strong> {{ admin.password }}</p>
+                            <a href="{{ path('app_forgot_password_request') }}"><p><strong>Réinitialiser mon mot de passe</strong></p></a>
                             <p><strong>Nom:</strong> {{ admin.nom }}</p>
                             <p><strong>Prénom:</strong> {{ admin.prenom }}</p>
                             <p><strong>Première image de page d'accueil :</strong> <img src="{{ asset('img/firstImageHome/') ~ admin.firstImageHome }}" class="img-fluid" alt="Image de la première page d'accueil" style="max-width: 150px;"></p>
@@ -22,6 +22,9 @@
                             <p><strong>Biographie:</strong> {{ admin.biographie }}</p>
                             <p><strong>Deuxième image pour ma biographie :</strong> <img src="{{ asset('img/second-aPropos/') ~ admin.secondImageBiographie }}" class="img-fluid" alt="Second Image Biographie" style="max-width: 150px;"></p>
                             <p><strong>Image de présentation de mes réseaux sociaux :</strong> <img src="{{ asset('img/third-aPropos/') ~ admin.imageReseauxSociaux }}" class="img-fluid" alt="Image Réseaux" style="max-width: 150px;"></p>
+                            <p><strong>Image de présentation de mes réseaux sociaux :</strong> <img src="{{ asset('img/imgLogo/') ~ admin.imglogo }}" class="img-fluid" alt="Logo-entrepriise" style="max-width: 150px;"></p>
+                            <p><strong>Image de présentation de mes réseaux sociaux :</strong> <img src="{{ asset('img/imgLogoTrans/') ~ admin.imglogotrans }}" class="img-fluid" alt="Logo pour la transition de page" style="max-width: 150px;"></p>
+                            <p><strong>Slogan footer :</strong> {{ admin.slogan }}</p>
                             <p><strong>Crée le :</strong> {{ admin.createdAt ? admin.createdAt|date('Y-m-d H:i:s') : '' }}</p>
                             <p><strong>Mis a jour le :</strong> {{ admin.updatedAt ? admin.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
                         </div>

@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Edit Admin{% endblock %}
+{% block title %}Modification de profil{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -8,16 +8,13 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="container-fluid">
                 <div class="row">
-                    <!-- Votre contenu de la page ici -->
                     <div class="col-md-12">
                         <h1>Formulaire d'administrateur</h1>
                         <br>
-                        <!-- Insérez votre formulaire ici -->
                         <div class="admin-form">
                             {{ form_start(form) }}
                             <h4 class="mt-5 mb-3">Mon profil</h4>
                                 {{ form_row(form.email) }}
-                                {{ form_row(form.password) }}
                                 {{ form_row(form.nom) }}
                                 {{ form_row(form.prenom) }}
 
@@ -47,6 +44,17 @@
                                 {{ form_widget(form.imageReseauxSociaux, {'attr': {'onchange': 'showImagePreview(this, "selected-image-preview-4")'}}) }}
                                 <img id="selected-image-preview-4" src="#" alt="Aperçu de l'image sélectionnée" style="max-width: 200px; max-height: 200px; display: none;">
 
+                                <p class="mt-4"><strong>Slogan footer :</strong></p>
+                                {{ form_widget(form.slogan, {'attr': {'rows': '2'}}) }}
+
+                                <p class="mt-4"><strong>Votre logo :</strong></p>
+                                {{ form_widget(form.imgLogo, {'attr': {'onchange': 'showImagePreview(this, "selected-image-preview-5")'}}) }}
+                                <img id="selected-image-preview-5" src="#" alt="Aperçu de l'image sélectionnée" style="max-width: 200px; max-height: 200px; display: none;">
+
+                                <p class="mt-4"><strong>Votre logo de transition de page :</strong></p>
+                                {{ form_widget(form.imgLogoTrans, {'attr': {'onchange': 'showImagePreview(this, "selected-image-preview-6")'}}) }}
+                                <img id="selected-image-preview-6" src="#" alt="Aperçu de l'image sélectionnée" style="max-width: 200px; max-height: 200px; display: none;">
+
                                 <div class="row my-4">
                                     <div class="col-md-6">
                                         {{ form_rest(form) }}
@@ -70,16 +78,11 @@
         const file = input.files[0];
         const imagePreview = document.getElementById(imagePreviewId);
 
-        // Vérifier si un fichier a été sélectionné
         if (file) {
-            // Créer un objet URL à partir du fichier sélectionné
             const objectUrl = URL.createObjectURL(file);
-            // Mettre à jour la source de l'élément img avec l'URL de l'objet
             imagePreview.src = objectUrl;
-            // Afficher l'aperçu de l'image
             imagePreview.style.display = 'block';
         } else {
-            // Si aucun fichier n'est sélectionné, masquer l'aperçu de l'image
             imagePreview.src = '#';
             imagePreview.style.display = 'none';
         }

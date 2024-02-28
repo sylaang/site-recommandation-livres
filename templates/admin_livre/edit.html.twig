@@ -3,33 +3,63 @@
 {% block title %}Edit Livre{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_row(form.couverture) }}
-    {{ form_row(form.titre) }}
-    {{ form_row(form.shortDescription) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.nbrPage) }}
-    {{ form_row(form.auteur) }}
-    {{ form_row(form.genre) }}
+<div class="container">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="container">
+                <div class="row">
+                    <hr>
+                    <div class="col-md-12">
+                        <h1>Formulaire de Livre</h1>
+                        <br>
+                        <div class="book-list">
+                            {{ form_start(form) }}
+                            <div class="form-group">
+                                {{ form_row(form.couverture) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.titre) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.shortDescription) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.description) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.nbrPage) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.auteur) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.genre) }}
+                            </div>
 
-    <h3>Liens</h3>
-    <div id="achatUrls" data-prototype="{{ form_widget(form.achatUrls.vars.prototype)|e('html_attr') }}">
-        {% for achatUrlForm in form.achatUrls %}
-            <div>
-                {{ form_row(achatUrlForm.url) }}
-                <button type="button" class="btn btn-danger" onclick="removeAchatUrl(this)">Supprimer</button>
+                            <h3>Liens</h3>
+                            <div id="achatUrls" data-prototype="{{ form_widget(form.achatUrls.vars.prototype)|e('html_attr') }}">
+                                {% for achatUrlForm in form.achatUrls %}
+                                <div class="form-group">
+                                    {{ form_row(achatUrlForm.url) }}
+                                    <button type="button" class="btn btn-danger" onclick="removeAchatUrl(this)">Supprimer</button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="addAchatUrl()">Ajouter un lien</button>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    {{ include('admin_livre/_form.html.twig', {'button_label': 'Update'}) }}
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
             </div>
-        {% endfor %}
+        </main>
     </div>
-    <button type="button" class="btn btn-primary" onclick="addAchatUrl()">Ajouter un lien</button>
-    <div class="row mb-4">
-        <div class="col-md-6">
-            {{ include('admin_livre/_form.html.twig', {'button_label': 'Update'}) }}
-        </div>
-    </div>
-    
-    {{ form_rest(form) }}
-{{ form_end(form) }}
+</div>
 
 <script>
     function addAchatUrl() {
