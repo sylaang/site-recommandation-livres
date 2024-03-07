@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Livre index
+{% block title %}Philippe Popieul - Ouvrages
 {% endblock %}
 
 {% block body %}
@@ -46,46 +46,95 @@
 		</div>
 	</div>
 
-    	{% for adminInfo in adminInfos %}        
-	<div class="container-fluid pt-5 mt-5">
-		<div class="row" style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
-			<div class="col-md-5 col-sm-12 p-0">
-				<div style="background-image: url('{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
-			</div>
-			<div class="col-md-7 col-sm-12 p-5">
-				<h2>
-					<strong style="color: black;">Découvrez les réseaux de Philippe Popieul</strong>
-				</h2>
+	{% for adminInfo in adminInfos %}
+		<div class="container-fluid pt-5 mt-5">
+			<div class="row" style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
+				<div class="col-md-5 col-sm-12 p-0">
+					<div style="background-image: url('{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+				</div>
+				<div class="col-md-7 col-sm-12 p-5">
+					<h2>
+						<strong style="color: black;">Découvrez les réseaux de Philippe Popieul</strong>
+					</h2>
 
-				<div class="row">
-					<div class="col-md-12">
-						<h3 class="pt-4">
-							<i class="fab fa-linkedin"></i>
-							<strong style="color: black;">LinkedIn</strong>
-						</h3>
-						<div class="col-md-6">
-							<p>En suivant Philippe sur LinkedIn, vous en saurez plus sur ses avancées professionnelles et littéraires.</p>
-                        <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.linkedin.com/in/philippepopieul/', '_blank')">S'abonner</button>
+					<div class="row">
+						<div class="col-md-12">
+							<h3 class="pt-4">
+								<i class="fab fa-linkedin"></i>
+								<strong style="color: black;">LinkedIn</strong>
+							</h3>
+							<div class="col-md-6">
+								<p>En suivant Philippe sur LinkedIn, vous en saurez plus sur ses avancées professionnelles et littéraires.</p>
+								<button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.linkedin.com/in/philippepopieul/', '_blank')">S'abonner</button>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="row mt-4">
-					<div class="col-md-12">
-						<h3 class="pt-4">
-							<i class="fab fa-instagram" style="color: #e4405f;"></i>
-							<strong style="color: black;">Instagram</strong></h3>
-						<div class="col-md-6">
-							<p>En suivant Philippe Popieul sur Instagram, vous aurez l’opportunité de découvrir des publications plus fréquentes sur les thématiques portant sur son ouvrage en cours et ceux à paraître.</p>
-                        <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.instagram.com/philippe.popieul/', '_blank')">Suivre</button>
+					<div class="row mt-4">
+						<div class="col-md-12">
+							<h3 class="pt-4">
+								<i class="fab fa-instagram" style="color: #e4405f;"></i>
+								<strong style="color: black;">Instagram</strong>
+							</h3>
+							<div class="col-md-6">
+								<p>En suivant Philippe Popieul sur Instagram, vous aurez l’opportunité de découvrir des publications plus fréquentes sur les thématiques portant sur son ouvrage en cours et ceux à paraître.</p>
+								<button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.instagram.com/philippe.popieul/', '_blank')">Suivre</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	{% endfor %}
+	{% block footer %}{% endblock %}
+	<div style="height: 2vh;"></div>
+	<footer class="text-white py-5" style="background: #30588c; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-center pb-5">
+					{% set logoPath2 = glob('img/imgLogo/*')|first %}
+					<a href="{{ path('app_home') }}" class="ajax">
+						<img width="160" height="100" src="https://philippepopieul.fr/img/imgLogo/Logo-sans-texte-P-Popieul-65e732a3e5723.svg" alt="footer logo" data-lazy-src="{{ logoPath2 }}" data-ll-status="loaded" class="entered lazyloaded">
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<h5 class="text-black">À propos</h5>
+					<p>
+						<a href="{{ path('app_apropos') }}"  class="text-white">{{slogan()}}</a>
+					</p>
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-4 text-black">
+					<h5>Nos Ouvrages</h5>
+					<ul class="list-unstyled text-white">
+						{% for titre in titres.getTitres() %}
+							<li>
+								<a href="{{ path('app_livre_index') }}" class="text-white">{{ titre }}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h5 class="text-black">Contactez-nous</h5>
+					<p>Email: <a href="mailto:contact@philippepopieul.fr"  class="text-white">contact@philippepopieul.fr</a></p>
+				</div>
+
+			</div>
+		</div>
+		<div class="mt-3 py-2" style="background: #6a95cd; width: 100%; display: flex; justify-content: center; align-items: center;">
+			<a href="{{ path('app_mentions_legales') }}" style="color: whitesmoke; text-decoration: none;" class="text-center">Mentions légales |</a>
+			<a href="{{ path('app_cgu') }}" style="color: whitesmoke; text-decoration: none;" class="text-center mx-2">CGU</a>
+			<a href="{{ path('app_politique_conf') }}" style="color: whitesmoke; text-decoration: none;" class="text-center">| Politique de confidentialité</a>
+		</div>
+		<div style="display: flex; justify-content: center;">
+			<p>Le site créé par</p>
+			<p>
+				<a href="https://www.weynspire.com" class="text-white" style="margin-left: 0.5em;">
+					We Ynspire</a>
+			</p>
+		</div>
 	</div>
-    {% endfor %}
-
-
-
+</footer>
 {% endblock %}

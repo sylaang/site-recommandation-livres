@@ -1,66 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html  lang="fr" dir="ltr">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description"
-		content="Découvrez Philippe Popieul, un auteur polyvalent, ayant déjà écrit un ouvrage technique sur la transformation digitale et se lançant maintenant dans la préparation d’un roman de science fiction sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour différents genres littéraires.">
-	<title>
-		{% block title %}{% endblock %}
-	</title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Découvrez Philippe Popieul, un auteur polyvalent, ayant déjà écrit un ouvrage technique sur la transformation digitale et se lançant maintenant dans la préparation d’un roman de science fiction sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour différents genres littéraires.">
+		<title>
+			{% block title %}Philippe Popieul Accueil{% endblock %}
+		</title>
+		{#_______________________________________________________________FONT_AWESOME________________________________________________#}
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-	{#_______________________________________________________________FONT_AWESOME________________________________________________#}
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+		{#_______________________________________________________________GOOGLE_FONTS________________________________________________#}
+		<link
+		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
-	{#_______________________________________________________________GOOGLE_FONTS________________________________________________#}
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+		{#___________________________________________________________________MDB________________________________________________#}
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet">
 
-	{#___________________________________________________________________MDB________________________________________________#}
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet">
+		{#_______________________________________________________________HEADER_MAIN_SITE________________________________________________#}
+		<link
+		href="{{ asset('css/site.css') }}" rel="stylesheet">
 
-	{#_______________________________________________________________HEADER_MAIN_SITE________________________________________________#}
-	<link href="{{ asset('css/site.css') }}" rel="stylesheet">
+		{# Copyright © 2024 Mehdi Hachem de chez Weynspire. Tous droits réservés. #}
+		{# Pour plus d'informations, consultez <a href="https://www.linkedin.com/in/mehdi-hachem/">mon profil LinkedIn</a>. #}
+		
 
+		{% set logoPath3 = glob('img/imgLogo/*')|first %}
+		<link rel="icon" type="image/x-icon" href="{{logoPath3}}">
 
-	<link rel="icon"
-		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-	{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-	{% block stylesheets %}
-	{{ encore_entry_link_tags('app') }}
-	{% endblock %}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-
-</head>
-
-<body>
-	<script>
-		window.onload = () => {
-			const anchors = document.querySelectorAll('a');
-			const transition_el = document.querySelector('.transition');
-
-			setTimeout(() => {
-				transition_el.classList.remove('is-active');
-			}, 100);
-
-			anchors.forEach(anchor => {
-				anchor.addEventListener('click', e => {
-					e.preventDefault();
-					// Utiliser currentTarget pour toujours référencer l'élément attaché à l'écouteur
-					let target = e.currentTarget.href;
-
-					transition_el.classList.add('is-active');
-
-					setTimeout(() => { // Correction : utiliser setTimeout au lieu de setInterval
-						window.location.href = target;
-					}, 2000);
-				});
-			});
-		}
-	</script>
-
-	<style>
-		:root {
+		<style>:root
+		{
 			--dark: #ffffffe3;
 		}
 
@@ -86,6 +62,48 @@
 			transform: translate(-50%, -50%);
 		}
 	</style>
+
+</head>
+
+<body>
+	<script>
+window.onload = () => {
+    const anchors = document.querySelectorAll('a');
+    const transition_el = document.querySelector('.transition');
+
+    setTimeout(() => {
+        transition_el.classList.remove('is-active');
+    }, 100);
+
+    anchors.forEach(anchor => {
+        anchor.addEventListener('click', e => {
+            e.preventDefault();
+            // Vérifier si le lien est externe
+            if (!anchor.href.startsWith(window.location.origin)) {
+                window.location.href = anchor.href;
+                return;
+            }
+            // Utiliser currentTarget pour toujours référencer l'élément attaché à l'écouteur
+            let target = e.currentTarget.href;
+
+            transition_el.classList.add('is-active');
+
+            setTimeout(() => { // Correction : utiliser setTimeout au lieu de setInterval
+                window.location.href = target;
+            }, 2000);
+        });
+    });
+
+    // Gérer l'événement popstate pour le retour en arrière
+    window.addEventListener('popstate', () => {
+        transition_el.classList.add('is-active');
+
+        setTimeout(() => {
+            transition_el.classList.remove('is-active');
+        }, 2000);
+    });
+}
+	</script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<div class="transition transition-2 is-active">
@@ -114,20 +132,17 @@
 						<a href="{{ path('app_contact') }}">Contact</a>
 					</li>
 					{% if not is_granted('ROLE_ADMIN') %}
-					<li>
-						<a style="position: absolute; right: 50px; top: 5vh;" href="{{ path('app_login') }}">
-							<i class="fas fa-user"></i>
-						</a>
-					</li>
+						<li>
+							<a style="position: absolute; right: 50px; top: 5vh;" href="{{ path('app_login') }}"><i class="fas fa-user"></i>
+							</a>
+						</li>
 					{% endif %}
 					{% if is_granted('ROLE_ADMIN') %}
-					<ul>
-						<li><a style="position: absolute; right: 2vw; top: 50%;"
-								href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt" style="color: red;"></i></a></li>
-						<li><a style="position: absolute; right: 6vw; top: 50%;"
-								href="{{ path('app_admin_dashboard') }}"><i class="fas fa-tachometer-alt"></i></a></li>
+						<ul>
+							<li><a style="position: absolute; right: 2vw; top: 50%;"href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt" style="color: red;"></i></a></li>
+							<li><a style="position: absolute; right: 6vw; top: 50%;"href="{{ path('app_admin_show') }}"><i class="fas fa-tachometer-alt"></i></a></li>
 
-					</ul>
+						</ul>
 					{% endif %}
 				</ul>
 			</nav>
@@ -137,17 +152,14 @@
 
 		{% block body %}{% endblock %}
 		<div style="height: 2vh;"></div>
-
-
-		<footer class="text-white py-5"
-			style="background: #30588c; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
+		{% block footer %}
+		<footer class="text-white py-5" style="background: #30588c; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
 			<div class="container">
 				<div class="row">
 					<div class="col-12 text-center pb-5">
 						{% set logoPath2 = glob('img/imgLogo/*')|first %}
 						<a href="{{ path('app_home') }}" class="ajax">
-							<img width="160" height="100" src="{{ logoPath2 }}" alt="footer logo"
-								data-lazy-src="{{ logoPath2 }}" data-ll-status="loaded" class="entered lazyloaded">
+							<img width="160" height="100" src="{{ logoPath2 }}" alt="footer logo" data-lazy-src="{{ logoPath2 }}" data-ll-status="loaded" class="entered lazyloaded">
 						</a>
 					</div>
 				</div>
@@ -155,22 +167,23 @@
 					<div class="col-md-3">
 						<h5 class="text-black">À propos</h5>
 						<p>
-							{{slogan()}}
+							<a href="{{ path('app_apropos') }}"  class="text-white">{{slogan()}}</a>
 						</p>
 					</div>
+					<div class="col-md-1"></div>
 					<div class="col-md-4 text-black">
 						<h5>Nos Ouvrages</h5>
 						<ul class="list-unstyled text-white">
 							{% for titre in titres.getTitres() %}
-							<li>
-								<a href="{{ path('app_livre_index') }}" class="text-white">{{ titre }}</a>
-							</li>
+								<li>
+									<a href="{{ path('app_livre_index') }}" class="text-white">{{ titre }}</a>
+								</li>
 							{% endfor %}
 						</ul>
 					</div>
 					<div class="col-md-4">
 						<h5 class="text-black">Contactez-nous</h5>
-						<p>Email: contact@philippepopieul.fr</p>
+						<p>Email: <a href="mailto:contact@philippepopieul.fr"  class="text-white">contact@philippepopieul.fr</a></p>
 					</div>
 
 				</div>
@@ -180,25 +193,18 @@
 				<a href="{{ path('app_cgu') }}" style="color: whitesmoke; text-decoration: none;" class="text-center mx-2">CGU</a>
 				<a href="{{ path('app_politique_conf') }}" style="color: whitesmoke; text-decoration: none;" class="text-center">| Politique de confidentialité</a>
 			</div>
+			<div style="display: flex; justify-content: center;">
+				<p>Le site créé par</p> <p><a href="https://www.weynspire.com" class="text-white" style="margin-left: 0.5em;" target="_blank"> We Ynspire</a></p>
+			</div>
+		</footer>		
+	{% endblock %}
 	</div>
-	</footer>
-	</div>
-
-
 	<!-- ____________________________________MDB_______________________________-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
 	<!-- ____________________________________NAV_______________________________-->
 	<script src="{{ asset('js/nav.js') }}"></script>
-
-
 	{% block javascripts %}
-	{{ encore_entry_script_tags('app') }}
+		{{ encore_entry_script_tags('app') }}
 	{% endblock %}
-</body>
-
-</html>
-</body>
-
-</html>
+</body></html>

@@ -21,9 +21,9 @@ class ContactController extends AbstractController
     {
         $this->adminRepository = $adminRepository;
     }
-    
+
     #[Route('/contact', name: 'app_contact')]
-    public function index(Request $request, EntityManagerInterface $manager,MailService $mailService): Response
+    public function index(Request $request, EntityManagerInterface $manager, MailService $mailService): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -32,32 +32,29 @@ class ContactController extends AbstractController
         $adminInfos = $this->adminRepository->findAdminInfos();
 
 
-        if($form->isSubmitted()&&$form->isValid())
-        {
-            $contact=$form->getData();
-            
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contact = $form->getData();
+
             $manager->persist($contact);
             $manager->flush();
-            
+
             $context = [
-                 'contact' => $contact, 
-                ];
-           
+                'contact' => $contact,
+            ];
+
 
             $mailService->sendMail(
-                $contact->getMail(),
-                'sylaang@outlook.fr',
+                'contact@philippepopieul.fr',
+                'contact@philippepopieul.fr',
                 $contact->getSubject(),
                 'contact',
-                $context
+                $context,
+                $contact->getMail()
             );
-
             $this->addFlash(
                 'succes',
-                'Votre demande a été envoyé avec succès !'
+                'Votre message a été envoyé avec succès !'
             );
-
-
         }
 
         return $this->render('contact/index.html.twig', [

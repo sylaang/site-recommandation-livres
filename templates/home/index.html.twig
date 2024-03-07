@@ -4,22 +4,34 @@
 {% endblock %}
 
 {% block stylesheets %}
-
+	<style>
+		.btn-animate {
+			transition: transform 0.3s ease;
+		}
+		.btn-animate:hover {
+			transform: scale(1.1);
+		}
+	</style>
+	<style>
+		.logo-icon {
+			width: 32px; /* Largeur fixe */
+			height: 32px; /* Hauteur fixe */
+		}
+	</style>
 {% endblock %}
 
 
 {% block body %}
 
-{% for adminInfo in adminInfos %}
-<div class="background-image" style="background: url('{{ asset('img/firstImageHome/') ~ adminInfo.firstimageHome }}') no-repeat center; background-size: cover;">
-    <div class="overlay">
-        <h1>Philippe Popieul</h1>
-        <p>Est un auteur polyvalent, ayant déjà écrit un ouvrage technique sur la transformation digitale et se lançant maintenant dans la préparation d’un roman de science fiction sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour différents genres littéraires.</p>
-        <a href="{{path('app_livre_index')}}" class="btn">Découvrir mes ouvrages</a>
-    </div>
-</div>
-{% endfor %}
-
+	{% for adminInfo in adminInfos %}
+		<div class="background-image" style="background: url('{{ asset('img/firstImageHome/') ~ adminInfo.firstimageHome }}') no-repeat center; background-size: cover;">
+			<div class="overlay">
+				<h1>Philippe Popieul</h1>
+				<p>Est un auteur polyvalent, ayant déjà écrit un ouvrage technique sur la transformation digitale et se lançant maintenant dans la préparation d’un roman de science fiction sur un sujet autour de l’intelligence artificielle. Sa diversité d’écriture reflète sa passion pour différents genres littéraires.</p>
+				<a href="{{path('app_livre_index')}}" class="btn">Découvrir mes ouvrages</a>
+			</div>
+		</div>
+	{% endfor %}
 
 
 	<div style="height: 120vh;"></div>
@@ -27,9 +39,9 @@
 		<div class="row">
 
 			<div class="col-md-6 col-sm-12 order-md-1 order-2">
-            {% for adminInfo in adminInfos %}
-				<img src="{{ asset('img/ImgShortBiographie/') ~ adminInfo.imgShortBiographie }}" alt="image Biographie de philippe Popieul" class="img-fluid" style="max-width: 100%; max-height: 400px;">
-                {% endfor %}
+				{% for adminInfo in adminInfos %}
+					<img src="{{ asset('img/ImgShortBiographie/') ~ adminInfo.imgShortBiographie }}" alt="image Biographie de philippe Popieul" class="img-fluid" style="max-width: 100%; max-height: 400px;">
+				{% endfor %}
 			</div>
 
 			<div class="col-md-6 col-sm-12 order-md-2 order-1 mt-5">
@@ -70,14 +82,7 @@
 			<div class="container-fluid">
 				<div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel" data-interval="2000">
 					<div class="carousel-inner">
-						<style>
-							.btn-animate {
-								transition: transform 0.3s ease;
-							}
-							.btn-animate:hover {
-								transform: scale(1.1);
-							}
-						</style>
+
 						{% for key, livre in livres %}
 							{% if key < 3 %}
 								<div class="carousel-item {% if key == 0 %}active{% endif %}">
@@ -99,35 +104,30 @@
 													<p class="d-inline">Acheter :</p>
 													<div class="d-inline">
 														{% for achatUrl in livre.achatUrls %}
-														<a href="{{ achatUrl.url }}" class="">
-															{% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
-															{% if domain %}
-															<img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=128" alt="Icône de site" class="logo-icon" style="margin-left: 4rem;">
-															{% endif %}
-														</a>
+															<a href="{{ achatUrl.url }}" class="">
+																{% set domain = achatUrl.url ? achatUrl.url|extractDomainFromUrl : '' %}
+																{% if domain %}
+																	<img src="https://www.google.com/s2/favicons?domain={{ domain }}&sz=128" alt="Icône de site" class="logo-icon" style="margin-left: 4rem;">
+																{% endif %}
+															</a>
 														{% endfor %}
-						
-												</div>
 
-												<div class="row col-6 mt-4" style="margin-left: 25%;">
-													<a href="{{ path('app_livre_show', {'id': livre.id}) }}" class="btn btn-light btn-outline-dark btn-animate d-block mt-3">Voir plus</a>
+													</div>
+
+													<div class="row col-6 mt-4" style="margin-left: 25%;">
+														<a href="{{ path('app_livre_show', {'id': livre.id}) }}" class="btn btn-light btn-outline-dark btn-animate d-block mt-3">Voir plus</a>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							{% endif %}
+								{% endif %}
 							{% endfor %}
 
 						</div>
 
 					</div>
-					<style>
-					.logo-icon {
-						width: 32px; /* Largeur fixe */
-						height: 32px; /* Hauteur fixe */
-					}
-				</style>
+
 					<button class="carousel-control-prev custom-carousel-btn d-md-block" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="prev">
 						<span class="visually-hidden">Previous</span>
 					</button>
@@ -145,50 +145,49 @@
 			</div>
 		</div>
 	</div>
-	
-
-	{% for adminInfo in adminInfos %}        
-<div class="container-fluid pt-5 mt-5">
-    <div class="row" style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
-        <div class="col-md-5 col-sm-12 p-0">
-            <div style="background-image: url('{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
-        </div>
-        <div class="col-md-7 col-sm-12 p-5">
-            <h2>
-                <strong style="color: black;">Découvrez les réseaux de Philippe Popieul</strong>
-            </h2>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="pt-4">
-                        <i class="fab fa-linkedin"></i>
-                        <strong style="color: black;">LinkedIn</strong>
-                    </h3>
-                    <div class="col-md-6">
-                        <p>En suivant Philippe sur LinkedIn, vous en saurez plus sur ses avancées professionnelles et littéraires.</p>
-                        <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.linkedin.com/in/philippepopieul/', '_blank')">S'abonner</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <h3 class="pt-4">
-                        <i class="fab fa-instagram" style="color: #e4405f;"></i>
-                        <strong style="color: black;">Instagram</strong></h3>
-                    <div class="col-md-6">
-                        <p>En suivant Philippe Popieul sur Instagram, vous aurez l’opportunité de découvrir des publications plus fréquentes sur les thématiques portant sur son ouvrage en cours et ceux à paraître.</p>
-                        <button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.instagram.com/philippe.popieul/', '_blank')">Suivre</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %}
 
 
-{% endblock %}
-{% block javascripts %}
+	{% for adminInfo in adminInfos %}
+		<div class="container-fluid pt-5 mt-5">
+			<div class="row" style="background: #30588c3e; box-shadow: 0 5px 10px 3px #000000ce,0 -5px 10px 3px #000000ce;">
+				<div class="col-md-5 col-sm-12 p-0">
+					<div style="background-image: url('{{ asset('img/third-apropos/') ~ adminInfo.imageReseauxSociaux }}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+				</div>
+				<div class="col-md-7 col-sm-12 p-5">
+					<h2>
+						<strong style="color: black;">Découvrez les réseaux de Philippe Popieul</strong>
+					</h2>
+
+					<div class="row">
+						<div class="col-md-12">
+							<h3 class="pt-4">
+								<i class="fab fa-linkedin"></i>
+								<strong style="color: black;">LinkedIn</strong>
+							</h3>
+							<div class="col-md-6">
+								<p>En suivant Philippe sur LinkedIn, vous en saurez plus sur ses avancées professionnelles et littéraires.</p>
+								<button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.linkedin.com/in/philippepopieul/', '_blank')">S'abonner</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-4">
+						<div class="col-md-12">
+							<h3 class="pt-4">
+								<i class="fab fa-instagram" style="color: #e4405f;"></i>
+								<strong style="color: black;">Instagram</strong>
+							</h3>
+							<div class="col-md-6">
+								<p>En suivant Philippe Popieul sur Instagram, vous aurez l’opportunité de découvrir des publications plus fréquentes sur les thématiques portant sur son ouvrage en cours et ceux à paraître.</p>
+								<button type="button" class="btn btn-light btn-outline-dark btn-animate" onclick="window.open('https://www.instagram.com/philippe.popieul/', '_blank')">Suivre</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+
 
 {% endblock %}
+{% block javascripts %}{% endblock %}

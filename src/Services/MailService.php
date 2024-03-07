@@ -17,14 +17,14 @@ class MailService
 		$this->mailer = $mailerInterface;
 	}
 
-	public function sendMail($from,	$to, $subject, $template, $context): void 
+	public function sendMail($from,	$to, $subject, $template, $context, $replyTo = null): void 
 	{
 		$email = (new TemplatedEmail())
 			->from($from)
 			->to($to)
 			//->cc('cc@example.com')
 			//->bcc('bcc@example.com')
-			->replyTo($from)
+			->replyTo($replyTo ? $replyTo : $from)
 			//->priority(Email::PRIORITY_HIGH)
 			->subject($subject)
 			// chemin du template de la twig à la vue(view)

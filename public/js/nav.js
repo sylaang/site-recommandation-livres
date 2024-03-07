@@ -1,3 +1,5 @@
+/* Copyright Mehdi Hachem from Weynspire - Follow me on LinkedIn: https://www.linkedin.com/in/mehdi-hachem-54a8672b0/ */
+
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {

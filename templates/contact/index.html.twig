@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Philippe Popieul - Contact{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-<link rel="stylesheet" href="{{ asset('css/contact.css')}}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link rel="stylesheet" href="{{ asset('css/contact.css')}}">
+<style>
+    .custom-flash-message {
+        background-color: #d4edda;
+        color: #155724;
+        border-color: #030503;
+        display: flex;
+        align-items: center; /* Centrage vertical */
+        justify-content: center; /* Centrage horizontal */
+    }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -13,8 +23,8 @@
 
     <div class="container slot-one-text">
         <h1>Contactez moi</h1>
-        <div clas="slot-one-email">
-            <p><i class="fa fa-envelope"></i> contact@philippepopieul.fr</p>
+        <div class="slot-one-email">
+            <p><i class="fa fa-envelope"></i><a href="mailto:contact@philippepopieul.fr" class="text-black"> contact@philippepopieul.fr</a></p>
         </div>
         <div class="d-flex justify-content-center">
             <a href="https://www.instagram.com/philippe.popieul/" rel="noopener noreferrer">
@@ -27,6 +37,18 @@
     </div>
 
 </div>
+{% endfor %}
+
+{% block flash_messages %}
+{% for flashMessage in app.flashes('succes') %}
+<div class="alert alert-success custom-flash-message" role="alert">
+    {{ flashMessage }}
+</div>
+{% endfor %}
+{% endblock %}
+
+
+
 <div class="container d-flex justify-content-end">
     <div class="slot-two">
         <div class="row">
@@ -78,7 +100,6 @@
         </div>
     </div>
 </div>
-{% endfor %}
 
 {% for adminInfo in adminInfos %}
 <div class="container-fluid pt-5 mt-5">

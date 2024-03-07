@@ -26,38 +26,38 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
-    {
-        $admin = new Admin();
+    // #[Route('/new', name: 'app_admin_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
+    // {
+    //     $admin = new Admin();
         
-        $form = $this->createForm(AdminType::class, $admin);
-        $form->handleRequest($request);
+    //     $form = $this->createForm(AdminType::class, $admin);
+    //     $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form->isValid()) {
+    //     if ($form->isSubmitted() && $form->isValid()) {
 
-            $imagename = $form->get('imageBiographie')->getData();
+    //         $imagename = $form->get('imageBiographie')->getData();
 
-            if ($imagename) {
+    //         if ($imagename) {
 
-                $imageBiographie_nom = $fileUploader->uploadBiographie($imagename, $admin);               
+    //             $imageBiographie_nom = $fileUploader->uploadBiographie($imagename, $admin);               
                 
-                $admin->setImageBiographie($imageBiographie_nom);
-            }
+    //             $admin->setImageBiographie($imageBiographie_nom);
+    //         }
 
-            $admin->setCreatedAt(new DateTimeImmutable());
-            $admin->setUpdatedAt(new DateTimeImmutable());
-            $entityManager->persist($admin);
-            $entityManager->flush();
+    //         $admin->setCreatedAt(new DateTimeImmutable());
+    //         $admin->setUpdatedAt(new DateTimeImmutable());
+    //         $entityManager->persist($admin);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->renderForm('admin/new.html.twig', [
-            'admin' => $admin,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->renderForm('admin/new.html.twig', [
+    //         'admin' => $admin,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/profil', name: 'app_admin_show', methods: ['GET'])]
     public function show(): Response
@@ -130,7 +130,7 @@ class AdminController extends AbstractController
             $admin->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/edit.html.twig', [

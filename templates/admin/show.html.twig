@@ -17,6 +17,7 @@
                             <p><strong>Nom:</strong> {{ admin.nom }}</p>
                             <p><strong>Prénom:</strong> {{ admin.prenom }}</p>
                             <p><strong>Première image de page d'accueil :</strong> <img src="{{ asset('img/firstImageHome/') ~ admin.firstImageHome }}" class="img-fluid" alt="Image de la première page d'accueil" style="max-width: 150px;"></p>
+                            <img src="{{ asset('img/aPropos/' ~ admin.imageBiographie) }}" class="img-fluid" alt="Image Biographie" style="max-width: 150px;">
                             <p><strong>Courte biographie:</strong> {{ admin.shortBiographie }}</p>
                             <p><strong>Image de ma biographie :</strong> <img src="{{ asset('img/aPropos/') ~ admin.imageBiographie }}" class="img-fluid" alt="Image Biographie" style="max-width: 150px;"></p>
                             <p><strong>Biographie:</strong> {{ admin.biographie }}</p>
@@ -28,7 +29,7 @@
                             <p><strong>Crée le :</strong> {{ admin.createdAt ? admin.createdAt|date('Y-m-d H:i:s') : '' }}</p>
                             <p><strong>Mis a jour le :</strong> {{ admin.updatedAt ? admin.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
                         </div>
-                        <a href="{{ path('app_admin_index') }}">Back to list</a>
+                        
                         <a href="{{ path('app_admin_edit', {'id': admin.id}) }}">Modifier</a>
                     </div>
                 </div>
